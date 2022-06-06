@@ -1,24 +1,31 @@
 {
-  "name": "koga-one",
-  "version": "0.1.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
+    "start": "next start"
   },
   "dependencies": {
-    "next": "12.1.6",
+    "graphql": "^16.5.0",
+    "graphql-request": "^4.3.0",
+    "html-react-parser": "^1.4.14",
+    "moment": "^2.29.3",
+    "next": "latest",
+    "next-pwa": "^5.5.2",
     "react": "18.1.0",
-    "react-dom": "18.1.0"
+    "react-dom": "18.1.0",
+    "react-multi-carousel": "^2.8.0",
+    "sass": "^1.52.2"
   },
   "devDependencies": {
-    "@types/node": "17.0.38",
-    "@types/react": "18.0.10",
+    "@types/node": "17.0.35",
+    "@types/react": "18.0.9",
     "@types/react-dom": "18.0.5",
-    "eslint": "8.16.0",
-    "eslint-config-next": "12.1.6",
+    "autoprefixer": "^10.4.7",
+    "postcss": "^8.4.14",
+    "prettier": "^2.6.2",
+    "prettier-plugin-tailwindcss": "^0.1.11",
+    "tailwindcss": "^3.0.24",
     "typescript": "4.7.2"
   }
 }
