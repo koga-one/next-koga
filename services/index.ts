@@ -1,5 +1,12 @@
 import { request, gql } from "graphql-request";
-import { TPost, TCategory, TUrl, TAuthor, TComment } from "../components";
+import {
+  TPost,
+  TCategory,
+  TUrl,
+  TAuthor,
+  TComment,
+  TContent,
+} from "../components";
 
 const graphqlAPI = process.env.NEXT_PUBLIC_GRAPHCMS_ENDPOINT;
 
@@ -152,7 +159,7 @@ export const getPostDetails = async (slug: string) => {
       excerpt: string;
       featuredImage: TUrl;
       categories: TCategory[];
-      content: { raw: string };
+      content: TContent;
     };
   };
 
