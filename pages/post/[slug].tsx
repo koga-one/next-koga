@@ -24,7 +24,7 @@ type Props = {
   };
 };
 
-const PostDetails: NextPage<Props> = ({ post }) => {
+const PostDetails = ({ post }: Props) => {
   return (
     <div className="container mx-auto mb-8 px-10">
       <div className="grid grid-cols-1 gap-12 lg:grid-cols-12">
