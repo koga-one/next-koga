@@ -1,14 +1,12 @@
-import type {
-  InferGetServerSidePropsType,
-  GetStaticProps,
-  NextPage,
-} from "next";
+import type { NextPage } from "next";
 import Head from "next/head";
-import { PostCard, Categories, PostWidget, Post } from "../components";
+import { PostCard, Categories, PostWidget, TPost } from "../components";
 import { getPosts } from "../services";
 
 type Props = {
-  posts: Post[];
+  posts: {
+    node: TPost;
+  }[];
 };
 
 const Home: NextPage<Props> = ({ posts }) => {

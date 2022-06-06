@@ -5,8 +5,8 @@ import { getRecentPosts, getSimilarPosts } from "../services";
 import { TUrl, TCategory, TPost } from "./";
 
 type Props = {
-  categories: string[];
-  slug: string;
+  categories?: string[];
+  slug?: string;
 };
 
 const PostWidget = ({ categories, slug }: Props) => {
@@ -19,7 +19,7 @@ const PostWidget = ({ categories, slug }: Props) => {
 
   const [relatedPosts, setRelatedPosts] = useState<RelatedPostWrapper[]>([]);
   useEffect(() => {
-    if (slug) {
+    if (slug && categories) {
       getSimilarPosts(categories, slug).then((result) =>
         setRelatedPosts(result)
       );
