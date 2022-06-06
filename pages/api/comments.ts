@@ -5,8 +5,16 @@
 import { GraphQLClient, gql } from "graphql-request";
 const graphQLAPI = process.env.NEXT_PUBLIC_GRAPHCMS_ENDPOINT;
 
-export default async function comments(req, res) {
-  const graphQLClient = new GraphQLClient(graphQLAPI, {
+type TRequest = {
+  method: string;
+  headers: {
+    "Content-Type": string;
+  };
+  body: string;
+};
+
+export default async function comments(req: TRequest, res: any) {
+  const graphQLClient = new GraphQLClient(graphQLAPI!, {
     headers: {
       authorization: `Bearer ${process.env.GRAPHCMS_TOKEN}`,
     },

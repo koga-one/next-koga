@@ -16,17 +16,22 @@ const CommentsForm = ({ slug }: Props) => {
   const storeDataEl: RefObject<HTMLInputElement> = createRef();
 
   useEffect(() => {
-    nameEl.current.value = window.localStorage.getItem("name");
-    emailEl.current.value = window.localStorage.getItem("email");
+    const name: string | null = window.localStorage.getItem("name");
+    const email: string | null = window.localStorage.getItem("email");
+
+    if (typeof name === "string" && typeof email === "string") {
+      nameEl.current!.value = name;
+      emailEl.current!.value = email;
+    }
   }, []);
 
   const handleCommentSubmission = () => {
     setError(false);
 
-    const { value: comment } = commentEl.current;
-    const { value: name } = nameEl.current;
-    const { value: email } = emailEl.current;
-    const { checked: storeData } = storeDataEl.current;
+    const { value: comment } = commentEl.current!;
+    const { value: name } = nameEl.current!;
+    const { value: email } = emailEl.current!;
+    const { checked: storeData } = storeDataEl.current!;
 
     if (!comment || !name || !email) {
       setError(true);

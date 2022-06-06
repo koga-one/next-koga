@@ -16,7 +16,7 @@ const Comments = ({ slug }: Props) => {
     getComments(slug).then((result) => {
       setComments(result);
     });
-  }, []);
+  }, [slug]);
 
   return (
     <>

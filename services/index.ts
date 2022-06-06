@@ -194,7 +194,14 @@ export const getPostDetails = async (slug: string) => {
   return result.post;
 };
 
-export const submitComment = async (obj) => {
+type CommentObj = {
+  name: string;
+  email: string;
+  comment: string;
+  slug: string;
+};
+
+export const submitComment = async (obj: CommentObj) => {
   const result = await fetch("/api/comments", {
     method: "POST",
     headers: {

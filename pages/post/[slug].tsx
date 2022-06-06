@@ -9,7 +9,7 @@ import {
   Comments,
   CommentsForm,
 } from "../../components";
-import { TAuthor, TUrl, TCategory } from "../../components";
+import { TAuthor, TUrl, TCategory, TContent } from "../../components";
 
 type Props = {
   post: {
@@ -20,9 +20,7 @@ type Props = {
     excerpt: string;
     featuredImage: TUrl;
     categories: TCategory[];
-    content: {
-      raw: string;
-    };
+    content: TContent;
   };
 };
 
