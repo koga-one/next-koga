@@ -3,13 +3,14 @@ import moment from "moment";
 import parse from "html-react-parser";
 import { getComments } from "../services";
 import { comment } from "postcss";
+import { TComment } from "./";
 
 type Props = {
   slug: string;
 };
 
 const Comments = ({ slug }: Props) => {
-  const [comments, setComments] = useState([]);
+  const [comments, setComments] = useState<TComment[]>([]);
 
   useEffect(() => {
     getComments(slug).then((result) => {
