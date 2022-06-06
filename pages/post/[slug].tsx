@@ -64,12 +64,11 @@ type StaticProps = {
   };
 };
 
-export async function getStaticProps({ params }: StaticProps) {
+export async function getServerSideProps({ params }: StaticProps) {
   const data = (await getPostDetails(params.slug)) || [];
 
   return {
     props: { post: data },
-    revalidate: 10,
   };
 }
 
