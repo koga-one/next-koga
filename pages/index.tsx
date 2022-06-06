@@ -2,14 +2,16 @@ import type { NextPage } from "next";
 import Head from "next/head";
 import { PostCard, Categories, PostWidget, TPost } from "../components";
 import { getPosts } from "../services";
+import React, { useState, useEffect } from "react";
 
-type Props = {
-  posts: {
-    node: TPost;
-  }[];
-};
+const Home: NextPage = () => {
+  type PostsWrapper = { node: TPost }[];
 
-const Home: NextPage<Props> = ({ posts }) => {
+  const [posts, setPosts] = useState<PostsWrapper>([]);
+  useEffect(() => {
+    getPosts().then((result) => setPosts(result));
+  }, []);
+
   return (
     <div className="container mx-auto mb-8 px-10">
       <Head>
@@ -32,13 +34,5 @@ const Home: NextPage<Props> = ({ posts }) => {
     </div>
   );
 };
-
-export async function getStaticProps() {
-  const posts = (await getPosts()) || [];
-
-  return {
-    props: { posts },
-  };
-}
 
 export default Home;
