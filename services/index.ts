@@ -1,5 +1,5 @@
 import { request, gql } from "graphql-request";
-import { TPost, TCategory, TUrl, TAuthor } from "../components";
+import { TPost, TCategory, TUrl, TAuthor, TComment } from "../components";
 
 const graphqlAPI = process.env.NEXT_PUBLIC_GRAPHCMS_ENDPOINT;
 
@@ -192,4 +192,40 @@ export const getPostDetails = async (slug: string) => {
   );
 
   return result.post;
+};
+
+export const submitComment = async (obj) => {
+  const result = await fetch("/api/comments", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(obj),
+  });
+
+  return result.json();
+};
+
+export const getComments = async (slug: string) => {
+  type Wrapper = {
+    comments: TComment[];
+  };
+
+  const query = gql`
+    query GetComments($slug: String!) {
+      comments(where: { post: { slug: $slug } }) {
+        name
+        createdAt
+        comment
+      }
+    }
+  `;
+
+  const result: Wrapper = await request(
+    typeof graphqlAPI === "string" ? graphqlAPI : "",
+    query,
+    { slug }
+  );
+
+  return result.comments;
 };
