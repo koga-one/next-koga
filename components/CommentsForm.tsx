@@ -115,7 +115,7 @@ const CommentsForm = ({ slug }: Props) => {
           <button
             type="button"
             onClick={handleCommentSubmission}
-            className="rounded-lg px-4 py-2 text-katsu transition active:scale-90 active:bg-ki dark:bg-kami"
+            className="rounded-lg bg-katsu px-4 py-2 text-kami transition active:scale-90 active:bg-ki dark:bg-kami dark:text-katsu"
           >
             <p className="font-semibold">Post Comment</p>
           </button>
