@@ -865,7 +865,7 @@
     "@babel/types" "^7.4.4"
     "esutils" "^2.0.2"
 
-"@babel/runtime@^7.11.2", "@babel/runtime@^7.8.4":
+"@babel/runtime@^7.11.2", "@babel/runtime@^7.7.7", "@babel/runtime@^7.8.4":
   "integrity" "sha512-38Y8f7YUhce/K7RMwTp7m0uCumpv9hZkitCbBClqQIow1qSbCvGkcegKOXpEWCQLfWmevgRiWokZ1GkpfhbZug=="
   "resolved" "https://registry.npmjs.org/@babel/runtime/-/runtime-7.18.3.tgz"
   "version" "7.18.3"
@@ -967,6 +967,15 @@
   dependencies:
     "@jridgewell/resolve-uri" "^3.0.3"
     "@jridgewell/sourcemap-codec" "^1.4.10"
+
+"@loadable/component@^5.15.2":
+  "integrity" "sha512-ryFAZOX5P2vFkUdzaAtTG88IGnr9qxSdvLRvJySXcUA4B4xVWurUNADu3AnKPksxOZajljqTrDEDcYjeL4lvLw=="
+  "resolved" "https://registry.npmjs.org/@loadable/component/-/component-5.15.2.tgz"
+  "version" "5.15.2"
+  dependencies:
+    "@babel/runtime" "^7.7.7"
+    "hoist-non-react-statics" "^3.3.1"
+    "react-is" "^16.12.0"
 
 "@next/env@12.1.6":
   "integrity" "sha512-Te/OBDXFSodPU6jlXYPAXpmZr/AkG6DCATAxttQxqOWaq6eDFX25Db3dK0120GZrSZmv4QCe9KsZmJKDbWs4OA=="
@@ -1085,6 +1094,13 @@
   "resolved" "https://registry.npmjs.org/@types/json-schema/-/json-schema-7.0.11.tgz"
   "version" "7.0.11"
 
+"@types/loadable__component@^5.13.4":
+  "integrity" "sha512-YhoCCxyuvP2XeZNbHbi8Wb9EMaUJuA2VGHxJffcQYrJKIKSkymJrhbzsf9y4zpTmr5pExAAEh5hbF628PAZ8Dg=="
+  "resolved" "https://registry.npmjs.org/@types/loadable__component/-/loadable__component-5.13.4.tgz"
+  "version" "5.13.4"
+  dependencies:
+    "@types/react" "*"
+
 "@types/minimatch@*":
   "integrity" "sha512-Klz949h02Gz2uZCMGwDUSDS1YBlTdDDgbWHi+81l29tQALUtvz4rAYi5uoVhE5Lagoq6DeqAUlbrHvW/mXDgdQ=="
   "resolved" "https://registry.npmjs.org/@types/minimatch/-/minimatch-3.0.5.tgz"
@@ -1107,16 +1123,7 @@
   dependencies:
     "@types/react" "*"
 
-"@types/react@*":
-  "integrity" "sha512-JxSwm54IgMW4XTR+zFF5QpNx4JITmFbB4WHR2J0vg9RpjNeyqEMlODXsD2e64br6GX70TL0UYjZJETpyyC1WdA=="
-  "resolved" "https://registry.npmjs.org/@types/react/-/react-18.0.11.tgz"
-  "version" "18.0.11"
-  dependencies:
-    "@types/prop-types" "*"
-    "@types/scheduler" "*"
-    "csstype" "^3.0.2"
-
-"@types/react@18.0.9":
+"@types/react@*", "@types/react@18.0.9":
   "integrity" "sha512-9bjbg1hJHUm4De19L1cHiW0Jvx3geel6Qczhjd0qY5VKVE2X5+x77YxAepuCwVh4vrgZJdgEJw48zrhRIeF4Nw=="
   "resolved" "https://registry.npmjs.org/@types/react/-/react-18.0.9.tgz"
   "version" "18.0.9"
@@ -2143,6 +2150,13 @@
   dependencies:
     "function-bind" "^1.1.1"
 
+"hoist-non-react-statics@^3.3.1":
+  "integrity" "sha512-/gGivxi8JPKWNm/W0jSmzcMPpfpPLc3dY/6GxhX2hQ9iGj3aDfklV4ET7NjKpSinLpJ5vafa9iiGIEZg10SfBw=="
+  "resolved" "https://registry.npmjs.org/hoist-non-react-statics/-/hoist-non-react-statics-3.3.2.tgz"
+  "version" "3.3.2"
+  dependencies:
+    "react-is" "^16.7.0"
+
 "html-dom-parser@1.2.0":
   "integrity" "sha512-2HIpFMvvffsXHFUFjso0M9LqM+1Lm22BF+Df2ba+7QHJXjk63pWChEnI6YG27eaWqUdfnh5/Vy+OXrNTtepRsg=="
   "resolved" "https://registry.npmjs.org/html-dom-parser/-/html-dom-parser-1.2.0.tgz"
@@ -2856,6 +2870,11 @@
     "loose-envify" "^1.1.0"
     "scheduler" "^0.22.0"
 
+"react-is@^16.12.0", "react-is@^16.7.0":
+  "integrity" "sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ=="
+  "resolved" "https://registry.npmjs.org/react-is/-/react-is-16.13.1.tgz"
+  "version" "16.13.1"
+
 "react-multi-carousel@^2.8.0":
   "integrity" "sha512-xuxQVGGiH8yWDDWgt9Z9+C+zzoACuBT740cV+6To52DYCwLlQGJIntDFLOCqMsO85Ist1x+630HA8lazb/a/tA=="
   "resolved" "https://registry.npmjs.org/react-multi-carousel/-/react-multi-carousel-2.8.0.tgz"
@@ -2866,7 +2885,7 @@
   "resolved" "https://registry.npmjs.org/react-property/-/react-property-2.0.0.tgz"
   "version" "2.0.0"
 
-"react@^17.0.2 || ^18.0.0-0", "react@^18.1.0", "react@>= 16.8.0 || 17.x.x || ^18.0.0-0", "react@>=16", "react@0.14 || 15 || 16 || 17 || 18", "react@18.1.0":
+"react@^17.0.2 || ^18.0.0-0", "react@^18.1.0", "react@>= 16.8.0 || 17.x.x || ^18.0.0-0", "react@>=16", "react@>=16.3.0", "react@0.14 || 15 || 16 || 17 || 18", "react@18.1.0":
   "integrity" "sha512-4oL8ivCz5ZEPyclFQXaNksK3adutVS8l2xzZU0cqEFrE9Sb7fC0EFK5uEk74wIreL1DERyjvsU915j1pcT2uEQ=="
   "resolved" "https://registry.npmjs.org/react/-/react-18.1.0.tgz"
   "version" "18.1.0"

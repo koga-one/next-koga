@@ -14,6 +14,7 @@ import {
   TCategory,
   PageWrapper,
 } from "../../components";
+import { NextPage } from "next";
 
 type Props = {
   post: {
@@ -23,12 +24,12 @@ type Props = {
     title: string;
     excerpt: string;
     featuredImage: TUrl;
-    categories: TCategory[];
+    category: TCategory;
     content: TContent;
   };
 };
 
-const PostDetails = ({ post }: Props) => {
+const PostDetails: NextPage<Props> = ({ post }) => {
   const router = useRouter();
   if (router.isFallback) {
     return <div>Loader</div>;
@@ -46,10 +47,7 @@ const PostDetails = ({ post }: Props) => {
           </div>
           <div className="col-span-1 lg:col-span-4">
             <div className="relative top-8 lg:sticky">
-              <PostWidget
-                categories={post.categories.map((category) => category.slug)}
-                slug={post.slug}
-              />
+              <PostWidget category={post.category} slug={post.slug} />
               <Categories />
             </div>
           </div>

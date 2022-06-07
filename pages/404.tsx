@@ -1,4 +1,6 @@
-const NotFound = () => {
+import { NextPage } from "next";
+
+const NotFound: NextPage = () => {
   return (
     <div className="grid h-screen content-center justify-center">
       <div className="text-center">

@@ -3,13 +3,14 @@ import moment from "moment";
 import Link from "next/link";
 import { getRecentPosts, getSimilarPosts } from "../services";
 import { TUrl } from "./";
+import { TCategory } from "./MyTypes";
 
 type Props = {
-  categories?: string[];
+  category?: TCategory;
   slug?: string;
 };
 
-const PostWidget = ({ categories, slug }: Props) => {
+const PostWidget = ({ category, slug }: Props) => {
   type RelatedPostWrapper = {
     title: string;
     featuredImage: TUrl;
@@ -19,8 +20,8 @@ const PostWidget = ({ categories, slug }: Props) => {
 
   const [relatedPosts, setRelatedPosts] = useState<RelatedPostWrapper[]>([]);
   useEffect(() => {
-    if (slug && categories) {
-      getSimilarPosts(categories, slug).then((result) =>
+    if (slug && category) {
+      getSimilarPosts(category.slug, slug).then((result) =>
         setRelatedPosts(result)
       );
     } else {
@@ -29,7 +30,7 @@ const PostWidget = ({ categories, slug }: Props) => {
   }, [slug]);
 
   return (
-    <div className="mb-8 rounded-lg bg-white p-8 shadow-lg">
+    <div className="bg-white mb-8 rounded-lg p-8 shadow-lg">
       <h3 className="mb-8 border-b p-4 text-xl font-semibold">
         {slug ? "Related Posts" : "Recent Posts"}
       </h3>
@@ -45,7 +46,7 @@ const PostWidget = ({ categories, slug }: Props) => {
             />
           </div>
           <div className="ml-4 flex-grow">
-            <p className="text-xs text-gray-500">
+            <p className="text-gray-500 text-xs">
               {moment(post.createdAt).format("MMM DD, YYYY")}
             </p>
             <Link

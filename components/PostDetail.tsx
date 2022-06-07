@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ReactElement, useEffect, useState } from "react";
 import { TAuthor, TUrl, TCategory, TContent } from "./";
 import moment from "moment";
 import { RichText } from "@graphcms/rich-text-react-renderer";
@@ -11,14 +11,20 @@ type Props = {
     title: string;
     excerpt: string;
     featuredImage: TUrl;
-    categories: TCategory[];
+    category: TCategory;
     content: TContent;
   };
 };
 
 const PostDetail = ({ post }: Props) => {
+  const [richText, setRichText] = useState<ReactElement>();
+
+  useEffect(() => {
+    setRichText(<RichText content={post.content.raw} />);
+  }, []);
+
   return (
-    <div className="mb-8 rounded-lg bg-white pb-12 shadow-lg lg:p-8">
+    <div className="bg-white mb-8 rounded-lg pb-12 shadow-lg lg:p-8">
       <div className="relative mb-6 overflow-hidden shadow-md">
         <img
           src={post.featuredImage.url}
@@ -36,14 +42,14 @@ const PostDetail = ({ post }: Props) => {
               height="30px"
               width="30px"
             />
-            <p className="ml-2 inline align-middle text-lg text-gray-700">
+            <p className="text-gray-700 ml-2 inline align-middle text-lg">
               {post.author.name}
             </p>
           </div>
-          <div className="font-medium text-gray-700">
+          <div className="text-gray-700 font-medium">
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              className="mr-2 inline h-6 w-6 text-pink-500"
+              className="text-pink-500 mr-2 inline h-6 w-6"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -59,13 +65,7 @@ const PostDetail = ({ post }: Props) => {
           </div>
         </div>
         <h1 className="mb-8 text-3xl font-semibold">{post.title}</h1>
-        <RichText
-          content={post.content.raw}
-          renderers={{
-            h1: ({ children }) => <h1 className="text-red-500">{children}</h1>,
-            bold: ({ children }) => <strong>{children}</strong>,
-          }}
-        />
+        {richText}
       </div>
     </div>
   );

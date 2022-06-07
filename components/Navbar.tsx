@@ -11,13 +11,18 @@ const buttons: { name: string; slug: string }[] = [
 
 const Navbar = () => {
   return (
-    <nav className="fixed right-1/2 bottom-12 z-50 flex translate-x-1/2 gap-2">
+    <nav className="sticky bottom-12 z-50 grid grid-flow-col content-center justify-center gap-2">
       {buttons.map((button) => (
-        <div className="rounded bg-kami bg-opacity-50 px-4 py-2 font-semibold text-katsu backdrop-blur-md">
-          <Link href={button.slug}>
-            <a>{button.name}</a>
-          </Link>
-        </div>
+        <Link href={button.slug}>
+          <a>
+            <div
+              key={button.slug}
+              className="rounded border bg-katsu bg-opacity-50 px-4 py-2 font-semibold text-kami backdrop-blur-md dark:bg-kami dark:bg-opacity-50 dark:text-katsu"
+            >
+              {button.name.toLowerCase()}
+            </div>
+          </a>
+        </Link>
       ))}
     </nav>
   );

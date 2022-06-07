@@ -7,7 +7,7 @@ export type TPost = {
   title: string;
   featuredImage: TUrl;
   author: TAuthor;
-  categories: TCategory[];
+  category?: TCategory;
   excerpt: string;
 };
 
@@ -38,3 +38,9 @@ export type TComment = {
 };
 
 type ChildrenType = { children: string };
+
+export type TCardProps = {
+  className?: string;
+  post: TPost;
+  children: React.ReactElement;
+};

@@ -37,7 +37,7 @@ export const getPosts = async () => {
             featuredImage {
               url
             }
-            categories {
+            category {
               name
               slug
             }
@@ -89,7 +89,7 @@ export const getRecentPosts = async () => {
   return result.posts;
 };
 
-export const getSimilarPosts = async (categories: string[], slug: string) => {
+export const getSimilarPosts = async (category: string, slug: string) => {
   type Wrapper = {
     posts: {
       title: string;
@@ -100,12 +100,9 @@ export const getSimilarPosts = async (categories: string[], slug: string) => {
   };
 
   const query = gql`
-    query GetPostDetails($slug: String!, $categories: [String!]) {
+    query GetPostDetails($slug: String!, $category: String!) {
       posts(
-        where: {
-          slug_not: $slug
-          AND: { categories_some: { slug_in: $categories } }
-        }
+        where: { slug_not: $slug, AND: { category: { slug: $category } } }
         last: 3
       ) {
         title
@@ -121,7 +118,7 @@ export const getSimilarPosts = async (categories: string[], slug: string) => {
   const result: Wrapper = await request(
     typeof graphqlAPI === "string" ? graphqlAPI : "",
     query,
-    { categories, slug }
+    { category, slug }
   );
 
   return result.posts;
@@ -158,7 +155,7 @@ export const getCategoryPost = async (slug: string) => {
 
   const query = gql`
     query GetCategoryPost($slug: String!) {
-      postsConnection(where: { categories_some: { slug: $slug } }) {
+      postsConnection(where: { category: { slug: $slug } }) {
         edges {
           node {
             author {
@@ -176,7 +173,7 @@ export const getCategoryPost = async (slug: string) => {
             featuredImage {
               url
             }
-            categories {
+            category {
               name
               slug
             }
@@ -204,7 +201,7 @@ export const getPostDetails = async (slug: string) => {
       title: string;
       excerpt: string;
       featuredImage: TUrl;
-      categories: TCategory[];
+      category: TCategory;
       content: TContent;
     };
   };
@@ -227,7 +224,7 @@ export const getPostDetails = async (slug: string) => {
         featuredImage {
           url
         }
-        categories {
+        category {
           name
           slug
         }
