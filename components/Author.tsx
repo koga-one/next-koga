@@ -8,19 +8,21 @@ type Props = {
 
 const Author = ({ author }: Props) => {
   return (
-    <div className="relative mt-20 mb-8 rounded-lg bg-black bg-opacity-20 p-12 text-center">
-      <div className="absolute left-0 right-0 -top-14">
+    <div className="relative mt-2 rounded-xl px-4 py-8 shadow-lg dark:bg-kami dark:bg-opacity-5 lg:mt-8 lg:p-8">
+      <div className="mb-4 flex place-content-center">
         <Image
           unoptimized
           alt={author.name}
-          height="100px"
-          width="100px"
+          height="120px"
+          width="120px"
           className="rounded-full align-middle"
           src={author.photo.url}
         />
       </div>
-      <h3 className="my-4 text-xl font-bold text-white">{author.name}</h3>
-      <p className="text-lg text-white">{author.bio}</p>
+      <h3 className="text-white my-4 text-center text-xl font-bold lg:text-3xl">
+        {author.name}
+      </h3>
+      <p className="text-center lg:text-lg">{author.bio}</p>
     </div>
   );
 };
