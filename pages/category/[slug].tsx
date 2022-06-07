@@ -1,7 +1,14 @@
 import React from "react";
 import { useRouter } from "next/router";
 import { getCategories, getCategoryPost } from "../../services";
-import { PostCard, Categories, TPost } from "../../components";
+import {
+  PostCard,
+  Categories,
+  TPost,
+  PageWrapper,
+  PostGrid,
+  PostWidget,
+} from "../../components";
 
 type Props = {
   posts: { node: TPost }[];
@@ -9,26 +16,32 @@ type Props = {
 
 const CategoryPost = ({ posts }: Props) => {
   const router = useRouter();
+  const categoryName = router.asPath.split("/")[2];
 
   if (router.isFallback) {
     return <div>Loader</div>;
   }
 
   return (
-    <div className="container mx-auto mb-8 px-10">
-      <div className="grid grid-cols-1 gap-12 lg:grid-cols-12">
-        <div className="col-span-1 lg:col-span-8">
-          {posts.map((post: { node: TPost }, index: number) => (
-            <PostCard key={index} post={post.node} />
-          ))}
-        </div>
-        <div className="col-span-1 lg:col-span-4">
-          <div className="relative top-8 lg:sticky">
-            <Categories />
+    <PageWrapper title={categoryName}>
+      <div className="container mx-auto">
+        <h1 className="mb-8 text-center text-6xl lg:mb-16 lg:text-9xl">
+          koga<span className="text-aka">.</span>one
+        </h1>
+        <div className="mx-2 grid min-h-screen grid-cols-1 gap-2 lg:grid-cols-12 lg:gap-8">
+          <div className="col-span-1 lg:col-span-8">
+            <PostGrid posts={posts} title={categoryName} />
+          </div>
+          <div className="col-span-1 lg:col-span-4">
+            <div className="relative lg:sticky lg:top-8">
+              <PostWidget />
+              <div className="mb-2 lg:mb-8"></div>
+              <Categories />
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </PageWrapper>
   );
 };
 export default CategoryPost;

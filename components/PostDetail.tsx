@@ -24,13 +24,15 @@ const PostDetail = ({ post }: Props) => {
   }, []);
 
   return (
-    <div className="bg-white mb-8 rounded-lg pb-12 shadow-lg lg:p-8">
-      <div className="relative mb-6 overflow-hidden shadow-md">
-        <img
-          src={post.featuredImage.url}
-          alt={post.title}
-          className="h-full w-full rounded-t-lg object-top"
-        />
+    <div className="bg-white mb-8 rounded-lg pb-12 shadow-lg">
+      <div className="mb-6 overflow-hidden shadow-md">
+        <div className="relative h-[160px] overflow-hidden rounded-xl lg:h-[400px]">
+          <img
+            src={post.featuredImage.url}
+            alt={post.title}
+            className="absolute bottom-1/2 w-full translate-y-1/2 rounded-t-lg object-top"
+          />
+        </div>
       </div>
       <div className="px-4 lg:px-0">
         <div className="mb-8 flex w-full items-center">

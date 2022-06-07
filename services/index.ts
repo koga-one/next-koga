@@ -62,6 +62,7 @@ export const getRecentPosts = async () => {
       featuredImage: TUrl;
       createdAt: string;
       slug: string;
+      excerpt: string;
     }[];
   };
 
@@ -71,6 +72,7 @@ export const getRecentPosts = async () => {
         orderBy: createdAt_ASC
         last: 3
       ) {
+        excerpt
         createdAt
         slug
         title
@@ -96,6 +98,7 @@ export const getSimilarPosts = async (category: string, slug: string) => {
       featuredImage: TUrl;
       createdAt: string;
       slug: string;
+      excerpt: string;
     }[];
   };
 
@@ -105,6 +108,7 @@ export const getSimilarPosts = async (category: string, slug: string) => {
         where: { slug_not: $slug, AND: { category: { slug: $category } } }
         last: 3
       ) {
+        excerpt
         title
         featuredImage {
           url
@@ -134,6 +138,7 @@ export const getCategories = async () => {
       categories {
         name
         slug
+        description
       }
     }
   `;

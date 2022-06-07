@@ -21,6 +21,7 @@ export type TAuthor = {
 export type TCategory = {
   name: string;
   slug: string;
+  description?: string;
 };
 
 export type TUrl = {

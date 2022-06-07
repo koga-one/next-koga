@@ -4,6 +4,8 @@ import Link from "next/link";
 import { getRecentPosts, getSimilarPosts } from "../services";
 import { TUrl } from "./";
 import { TCategory } from "./MyTypes";
+import Widget from "./Widget";
+import Image from "next/image";
 
 type Props = {
   category?: TCategory;
@@ -16,6 +18,7 @@ const PostWidget = ({ category, slug }: Props) => {
     featuredImage: TUrl;
     createdAt: string;
     slug: string;
+    excerpt: string;
   };
 
   const [relatedPosts, setRelatedPosts] = useState<RelatedPostWrapper[]>([]);
@@ -30,36 +33,35 @@ const PostWidget = ({ category, slug }: Props) => {
   }, [slug]);
 
   return (
-    <div className="bg-white mb-8 rounded-lg p-8 shadow-lg">
-      <h3 className="mb-8 border-b p-4 text-xl font-semibold">
-        {slug ? "Related Posts" : "Recent Posts"}
-      </h3>
-      {relatedPosts.map((post) => (
-        <div key={post.title} className="mb-4 flex w-full items-center">
-          <div className="w-16 flex-none">
-            <img
-              alt={post.title}
-              height="60px"
-              width="60px"
-              className="rounded-full align-middle"
-              src={post.featuredImage.url}
-            />
-          </div>
-          <div className="ml-4 flex-grow">
-            <p className="text-gray-500 text-xs">
-              {moment(post.createdAt).format("MMM DD, YYYY")}
-            </p>
-            <Link
-              href={`/post/${post.slug}`}
-              key={post.title}
-              className="text-md"
-            >
-              {post.title}
-            </Link>
-          </div>
-        </div>
-      ))}
-    </div>
+    <Widget title={slug ? "Related Posts" : "Recent Posts"}>
+      <div className="grid grow gap-4">
+        {relatedPosts.map((post) => (
+          <Link href={`/post/${post.slug}`}>
+            <a>
+              <div className="flex gap-2">
+                <p className="rounded-lg bg-katsu px-4 text-xs font-semibold text-kami dark:bg-gure dark:text-katsu">
+                  {moment(post.createdAt).format("MMM DD, YYYY")}
+                </p>
+              </div>
+              <div className="mt-2 flex flex-row rounded-xl border">
+                <div className="relative min-h-[80px] min-w-[80px]">
+                  <Image
+                    className="rounded-xl"
+                    src={post.featuredImage.url}
+                    layout="fill"
+                    sizes="50vw"
+                  />
+                </div>
+                <div className="px-4 py-2">
+                  <h2 className="text-lg">{post.title}</h2>
+                  <p className="text-xs">{post.excerpt}</p>
+                </div>
+              </div>
+            </a>
+          </Link>
+        ))}
+      </div>
+    </Widget>
   );
 };
 

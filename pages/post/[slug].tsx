@@ -1,20 +1,9 @@
 import React from "react";
 import { useRouter } from "next/router";
 import { getPosts, getPostDetails } from "../../services";
-import {
-  PostDetail,
-  Categories,
-  PostWidget,
-  Author,
-  Comments,
-  CommentsForm,
-  TContent,
-  TAuthor,
-  TUrl,
-  TCategory,
-  PageWrapper,
-} from "../../components";
+import { TContent, TAuthor, TUrl, TCategory } from "../../components";
 import { NextPage } from "next";
+import loadable from "@loadable/component";
 
 type Props = {
   post: {
@@ -35,26 +24,18 @@ const PostDetails: NextPage<Props> = ({ post }) => {
     return <div>Loader</div>;
   }
 
-  return (
-    <PageWrapper title={post.title}>
-      <div className="container mx-auto mb-8 px-10">
-        <div className="grid grid-cols-1 gap-12 lg:grid-cols-12">
-          <div className="col-span-1 lg:col-span-8">
-            <PostDetail post={post} />
-            <Author author={post.author} />
-            <CommentsForm slug={post.slug} />
-            <Comments slug={post.slug} />
-          </div>
-          <div className="col-span-1 lg:col-span-4">
-            <div className="relative top-8 lg:sticky">
-              <PostWidget category={post.category} slug={post.slug} />
-              <Categories />
-            </div>
-          </div>
-        </div>
-      </div>
-    </PageWrapper>
+  const Post = loadable(() =>
+    post.category
+      ? import(
+          `../../components/PostLayouts/${post.category.name.replace(
+            /\s/g,
+            ""
+          )}Layout`
+        )
+      : import("../../components/PostLayouts/DefaultLayout")
   );
+
+  return <Post post={post} />;
 };
 
 export default PostDetails;

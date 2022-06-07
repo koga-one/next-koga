@@ -13,7 +13,7 @@ const Layout = ({ children }: Props) => {
         <link rel="icon" href="/favicon.svg" />
       </Head>
       <Header />
-      {children}
+      <div className="min-h-screen">{children}</div>
       <Navbar />
       <Footer />
     </>
