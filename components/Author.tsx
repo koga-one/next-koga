@@ -19,7 +19,7 @@ const Author = ({ author }: Props) => {
           src={author.photo.url}
         />
       </div>
-      <h3 className="text-white my-4 text-center text-xl font-bold lg:text-3xl">
+      <h3 className="text-white my-4 text-center text-xl font-semibold lg:text-3xl">
         {author.name}
       </h3>
       <p className="text-center lg:text-lg">{author.bio}</p>
