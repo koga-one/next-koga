@@ -2,6 +2,7 @@ import React, { ReactElement, useEffect, useState } from "react";
 import { TAuthor, TUrl, TCategory, TContent } from "./";
 import moment from "moment";
 import { RichText } from "@graphcms/rich-text-react-renderer";
+import Image from "next/image";
 
 type Props = {
   post: {
@@ -24,8 +25,8 @@ const PostDetail = ({ post }: Props) => {
   }, []);
 
   return (
-    <div className="bg-white rounded-lg pb-12 shadow-lg">
-      <div className="mb-6 overflow-hidden shadow-md">
+    <div className="rounded-lg shadow-lg dark:bg-kami dark:bg-opacity-5">
+      <div className="overflow-hidden">
         <div className="relative h-[160px] overflow-hidden rounded-xl lg:h-[400px]">
           <img
             src={post.featuredImage.url}
@@ -34,40 +35,34 @@ const PostDetail = ({ post }: Props) => {
           />
         </div>
       </div>
-      <div className="px-4 lg:px-0">
-        <div className="mb-8 flex w-full items-center">
-          <div className="mb-4 mr-8 flex w-full items-center lg:mb-0 lg:w-auto">
-            <img
+      <div className="py-8 px-4 lg:p-8">
+        <div className="mb-8 flex flex-wrap items-center justify-center gap-2 lg:justify-start">
+          <span className="rounded-lg bg-katsu px-4 text-sm font-semibold text-kami dark:bg-gure dark:text-katsu lg:order-2 lg:text-base">
+            {moment(post.createdAt).format("MMM DD, YYYY")}
+          </span>
+          <div className="lg:order-0 h-10">
+            <Image
               src={post.author.photo.url}
               alt={post.author.name}
-              className="rounded-full align-middle"
-              height="30px"
-              width="30px"
+              className="rounded-full"
+              height="40px"
+              width="40px"
+              layout="fixed"
             />
-            <p className="text-gray-700 ml-2 inline align-middle text-lg">
-              {post.author.name}
-            </p>
           </div>
-          <div className="text-gray-700 font-medium">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="text-pink-500 mr-2 inline h-6 w-6"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
-              />
-            </svg>
-            <span>{moment(post.createdAt).format("MMM DD, YYYY")}</span>
-          </div>
+          <span className="hidden rounded-lg bg-katsu px-4 text-sm font-semibold text-kami dark:bg-gure dark:text-katsu lg:order-1 lg:inline lg:text-base">
+            {post.author.name}
+          </span>
+          <span className="rounded-lg bg-katsu px-4 text-sm font-semibold text-kami dark:bg-gure dark:text-katsu lg:order-4 lg:text-base">
+            {post.category ? post.category.name : "No category"}
+          </span>
         </div>
-        <h1 className="mb-8 text-3xl font-semibold">{post.title}</h1>
-        {richText}
+        <article>
+          <h1 className="mb-8 text-4xl font-semibold lg:text-6xl">
+            {post.title}
+          </h1>
+          {richText}
+        </article>
       </div>
     </div>
   );

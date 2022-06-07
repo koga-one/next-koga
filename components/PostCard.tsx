@@ -17,7 +17,7 @@ const PostCard = ({ post }: Props) => {
 
   return (
     <Link href={`/post/${post.slug}`}>
-      <a>
+      <a className="grow">
         <Card className="relative" post={post}>
           <div className="flex gap-2">
             <p className="rounded-lg bg-katsu px-4 text-sm font-semibold text-kami dark:bg-gure dark:text-katsu">
