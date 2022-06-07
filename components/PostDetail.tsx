@@ -24,7 +24,7 @@ const PostDetail = ({ post }: Props) => {
   }, []);
 
   return (
-    <div className="bg-white mb-8 rounded-lg pb-12 shadow-lg">
+    <div className="bg-white rounded-lg pb-12 shadow-lg">
       <div className="mb-6 overflow-hidden shadow-md">
         <div className="relative h-[160px] overflow-hidden rounded-xl lg:h-[400px]">
           <img
