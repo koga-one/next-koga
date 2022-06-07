@@ -9,6 +9,8 @@ type Props = {
   }[];
 };
 
+// This is theming
+
 const Home: NextPage<Props> = ({ posts }) => {
   return (
     <div className="container mx-auto mb-8 px-10">
