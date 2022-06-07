@@ -1,5 +1,5 @@
 import React from "react";
-import { Header } from "./";
+import { Navbar } from "./";
 import Head from "next/head";
 
 type Props = {
@@ -12,7 +12,7 @@ const Layout = ({ children }: Props) => {
       <Head>
         <link rel="icon" href="/favicon.svg" />
       </Head>
-      <Header />
+      <Navbar />
       {children}
     </>
   );
