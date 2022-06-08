@@ -65,9 +65,7 @@ const CommentsForm = ({ slug }: Props) => {
 
   return (
     <div className="mt-2 rounded-lg py-8 px-4 shadow-lg dark:bg-kami dark:bg-opacity-5 lg:mt-8 lg:p-8">
-      <h3 className="mb-8 text-center text-xl font-semibold lg:text-3xl">
-        Leave a reply
-      </h3>
+      <h3 className="mb-8 text-center text-3xl font-semibold">Leave a reply</h3>
       <div className="mb-4 grid grid-cols-1 gap-4">
         <textarea
           ref={commentEl}

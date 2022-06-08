@@ -36,7 +36,7 @@ const PostDetail = ({ post }: Props) => {
         </div>
       </div>
       <div className="py-8 px-4 lg:p-8">
-        <div className="mb-8 flex flex-wrap items-center justify-center gap-2 lg:justify-start">
+        <div className="mb-4 flex flex-wrap items-center justify-center gap-2 lg:mb-8 lg:justify-start">
           <span className="rounded-lg bg-katsu px-4 text-sm font-semibold text-kami dark:bg-gure dark:text-katsu lg:order-2 lg:text-base">
             {moment(post.createdAt).format("MMM DD, YYYY")}
           </span>
@@ -58,7 +58,7 @@ const PostDetail = ({ post }: Props) => {
           </span>
         </div>
         <article>
-          <h1 className="mb-8 text-4xl font-semibold lg:text-6xl">
+          <h1 className="mb-4 text-center text-3xl font-semibold lg:mb-8 lg:text-left lg:text-6xl">
             {post.title}
           </h1>
           {richText}
