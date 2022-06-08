@@ -36,7 +36,7 @@ const PostWidget = ({ category, slug }: Props) => {
     <Widget title={slug ? "Related Posts" : "Recent Posts"}>
       <div className="grid grow gap-4">
         {relatedPosts.map((post) => (
-          <Link href={`/post/${post.slug}`}>
+          <Link href={`/post/${post.slug}`} key={post.slug}>
             <a>
               <div className="flex gap-2">
                 <p className="rounded-lg bg-katsu px-4 text-xs font-semibold text-kami dark:bg-gure dark:text-katsu">

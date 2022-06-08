@@ -15,7 +15,7 @@ const Title = ({ title, subtitle }: Props) => {
           </span>
         )}
       </h1>
-      <h2 className="text-xl text-gure lg:text-4xl">
+      <h2 className="text-xl text-aka dark:text-gure lg:text-4xl">
         {subtitle ? subtitle : <span>the moon is beautiful, isn't it?</span>}
       </h2>
     </div>

@@ -1,6 +1,5 @@
-import React, { ReactElement, useEffect, useState } from "react";
-import { useRouter } from "next/router";
-import { getPages, getPageDetails } from "../services";
+import React from "react";
+import { getPageDetails, getAllPages } from "../services";
 import { RichText } from "@graphcms/rich-text-react-renderer";
 import {
   Categories,
@@ -15,12 +14,6 @@ type Props = {
 };
 
 const PageDetails = ({ pageDetails }: Props) => {
-  const router = useRouter();
-
-  if (router.isFallback) {
-    return <div>Loader</div>;
-  }
-
   return (
     <PageWrapper title={pageDetails.title}>
       <div className="container mx-auto">
@@ -71,9 +64,9 @@ export async function getStaticProps({ params }: StaticProps) {
 // Specify dynamic routes to pre-render pages based on data.
 // The HTML is generated at build time and will be reused on each request.
 export async function getStaticPaths() {
-  const pages = await getPages();
+  const pages = await getAllPages();
   return {
     paths: pages.map(({ slug }) => ({ params: { slug } })),
-    fallback: true,
+    fallback: false,
   };
 }

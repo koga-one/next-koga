@@ -6,7 +6,7 @@ import { TPage } from "./";
 const Navbar = () => {
   const [pages, setPages] = useState<TPage[]>([]);
   useEffect(() => {
-    getPages().then((newPages) => setPages(newPages));
+    getPages(true).then((newPages) => setPages(newPages));
   }, []);
 
   return (

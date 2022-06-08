@@ -20,7 +20,7 @@ export const getPosts = async () => {
 
   const query = gql`
     query MyQuery {
-      postsConnection {
+      postsConnection(orderBy: createdAt_DESC) {
         edges {
           node {
             author {
@@ -68,8 +68,8 @@ export const getRecentPosts = async () => {
   const query = gql`
     query GetPostDetails() {
       posts(
-        orderBy: createdAt_ASC
-        last: 3
+        orderBy: createdAt_DESC
+        first: 3
       ) {
         excerpt
         createdAt
@@ -305,7 +305,7 @@ export const getComments = async (slug: string) => {
   return result.comments;
 };
 
-export const getPages = async () => {
+export const getAllPages = async () => {
   type Wrapper = {
     pages: TPage[];
   };
@@ -323,6 +323,30 @@ export const getPages = async () => {
   const result: Wrapper = await request(
     typeof graphqlAPI === "string" ? graphqlAPI : "",
     query
+  );
+
+  return result.pages;
+};
+
+export const getPages = async (navbar: boolean) => {
+  type Wrapper = {
+    pages: TPage[];
+  };
+
+  const query = gql`
+    query GetPages($navbar: Boolean!) {
+      pages(where: { navbar: $navbar }) {
+        slug
+        subtitle
+        title
+      }
+    }
+  `;
+
+  const result: Wrapper = await request(
+    typeof graphqlAPI === "string" ? graphqlAPI : "",
+    query,
+    { navbar }
   );
 
   return result.pages;

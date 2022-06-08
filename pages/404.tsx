@@ -1,15 +1,49 @@
-import { NextPage } from "next";
+import type { NextPage } from "next";
+import {
+  PageWrapper,
+  Categories,
+  PostWidget,
+  TPost,
+  PostGrid,
+  Title,
+} from "../components";
+import { getPosts } from "../services";
 
-const NotFound: NextPage = () => {
+type Props = {
+  posts: {
+    node: TPost;
+  }[];
+};
+
+const NotFound: NextPage<Props> = ({ posts }) => {
   return (
-    <div className="grid h-screen content-center justify-center">
-      <div className="text-center">
-        <span className="font-garamond text-9xl font-black text-aka">404</span>
-        <br />
-        <span>This page could not be found</span>
+    <PageWrapper title="404">
+      <div className="container mx-auto">
+        <Title title="404" subtitle="huh, this page doesn't exist" />
+        <div className="mx-2 grid min-h-screen grid-cols-1 gap-2 lg:grid-cols-12 lg:gap-8">
+          <div className="col-span-1 lg:col-span-8">
+            <PostGrid posts={posts} title="Posts" />
+          </div>
+          <div className="col-span-1 lg:col-span-4">
+            <div className="relative lg:sticky lg:top-8">
+              <PostWidget />
+              <div className="mb-2 lg:mb-8"></div>
+              <Categories />
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
+    </PageWrapper>
   );
 };
+
+export async function getStaticProps() {
+  const posts = (await getPosts()) || [];
+
+  return {
+    props: { posts },
+    revalidate: 10,
+  };
+}
 
 export default NotFound;

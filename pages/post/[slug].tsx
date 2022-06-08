@@ -1,7 +1,6 @@
 import React from "react";
-import { useRouter } from "next/router";
 import { getPosts, getPostDetails } from "../../services";
-import { TContent, TAuthor, TUrl, TCategory } from "../../components";
+import { TContent, TAuthor, TCategory } from "../../components";
 import { NextPage } from "next";
 import loadable from "@loadable/component";
 
@@ -19,11 +18,6 @@ type Props = {
 };
 
 const PostDetails: NextPage<Props> = ({ post }) => {
-  const router = useRouter();
-  if (router.isFallback) {
-    return <div>Loader</div>;
-  }
-
   const Post = loadable(() =>
     post.category
       ? import(
@@ -60,6 +54,6 @@ export async function getStaticPaths() {
 
   return {
     paths: posts.map(({ node: { slug } }) => ({ params: { slug } })),
-    fallback: true,
+    fallback: false,
   };
 }

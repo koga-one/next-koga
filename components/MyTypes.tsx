@@ -51,4 +51,5 @@ export type TPage = {
   subtitle: string;
   slug?: string;
   content?: TContent;
+  navbar?: boolean;
 };
