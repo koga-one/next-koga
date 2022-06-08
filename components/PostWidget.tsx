@@ -15,7 +15,7 @@ type Props = {
 const PostWidget = ({ category, slug }: Props) => {
   type RelatedPostWrapper = {
     title: string;
-    featuredImage: TUrl;
+    imageLink: string;
     createdAt: string;
     slug: string;
     excerpt: string;
@@ -45,12 +45,12 @@ const PostWidget = ({ category, slug }: Props) => {
               </div>
               <div className="mt-2 flex flex-row rounded-xl border dark:bg-katsu">
                 <div className="relative min-h-[80px] min-w-[80px]">
-                  <Image
+                  {/* <Image
                     className="rounded-xl"
                     src={post.featuredImage.url}
                     layout="fill"
                     sizes="50vw"
-                  />
+                  /> */}
                 </div>
                 <div className="px-4 py-2">
                   <h2 className="text-lg">{post.title}</h2>

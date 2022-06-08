@@ -1,35 +1,42 @@
-import React from "react";
+import React, { ReactElement, useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import { getCategories, getCategoryPost } from "../../services";
+import { getPages, getPageDetails } from "../services";
+import { RichText } from "@graphcms/rich-text-react-renderer";
 import {
   Categories,
-  TPost,
   PageWrapper,
-  PostGrid,
   PostWidget,
   Title,
-} from "../../components";
+  TContent,
+} from "../components";
 
 type Props = {
-  posts: { node: TPost }[];
+  pageDetails: {
+    subtitle: string;
+    title: string;
+    content: TContent;
+  };
 };
 
-const CategoryPost = ({ posts }: Props) => {
+const PageDetails = ({ pageDetails }: Props) => {
+  const [richText, setRichText] = useState<ReactElement>();
+
+  useEffect(() => {
+    setRichText(<RichText content={pageDetails.content.raw} />);
+  }, []);
+
   const router = useRouter();
-  const categoryName = router.asPath.split("/")[2];
 
   if (router.isFallback) {
     return <div>Loader</div>;
   }
 
   return (
-    <PageWrapper title={categoryName}>
+    <PageWrapper title={pageDetails.title}>
       <div className="container mx-auto">
-        <Title />
+        <Title title={pageDetails.title} subtitle={pageDetails.subtitle} />
         <div className="mx-2 grid min-h-screen grid-cols-1 gap-2 lg:grid-cols-12 lg:gap-8">
-          <div className="col-span-1 lg:col-span-8">
-            <PostGrid posts={posts} title={categoryName} />
-          </div>
+          <div className="col-span-1 lg:col-span-8">{richText}</div>
           <div className="col-span-1 lg:col-span-4">
             <div className="relative lg:sticky lg:top-8">
               <PostWidget />
@@ -42,7 +49,7 @@ const CategoryPost = ({ posts }: Props) => {
     </PageWrapper>
   );
 };
-export default CategoryPost;
+export default PageDetails;
 
 type StaticProps = {
   params: {
@@ -52,10 +59,10 @@ type StaticProps = {
 
 // Fetch data at build time
 export async function getStaticProps({ params }: StaticProps) {
-  const posts = await getCategoryPost(params.slug);
+  const pageDetails = await getPageDetails(params.slug);
 
   return {
-    props: { posts },
+    props: { pageDetails },
     revalidate: 10,
   };
 }
@@ -63,9 +70,9 @@ export async function getStaticProps({ params }: StaticProps) {
 // Specify dynamic routes to pre-render pages based on data.
 // The HTML is generated at build time and will be reused on each request.
 export async function getStaticPaths() {
-  const categories = await getCategories();
+  const pages = await getPages();
   return {
-    paths: categories.map(({ slug }) => ({ params: { slug } })),
+    paths: pages.map(({ slug }) => ({ params: { slug } })),
     fallback: true,
   };
 }

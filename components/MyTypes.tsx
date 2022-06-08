@@ -5,7 +5,7 @@ export type TPost = {
   createdAt: string;
   slug: string;
   title: string;
-  featuredImage: TUrl;
+  imageLink: string;
   author: TAuthor;
   category?: TCategory;
   excerpt: string;
@@ -21,7 +21,7 @@ export type TAuthor = {
 export type TCategory = {
   name: string;
   slug: string;
-  description?: string;
+  subtitle: string;
 };
 
 export type TUrl = {

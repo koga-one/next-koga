@@ -34,9 +34,7 @@ export const getPosts = async () => {
             slug
             title
             excerpt
-            featuredImage {
-              url
-            }
+            imageLink
             category {
               name
               slug
@@ -59,7 +57,7 @@ export const getRecentPosts = async () => {
   type Wrapper = {
     posts: {
       title: string;
-      featuredImage: TUrl;
+      imageLink: string;
       createdAt: string;
       slug: string;
       excerpt: string;
@@ -76,9 +74,7 @@ export const getRecentPosts = async () => {
         createdAt
         slug
         title
-        featuredImage {
-          url
-        }
+        imageLink
       }
     }
   `;
@@ -95,7 +91,7 @@ export const getSimilarPosts = async (category: string, slug: string) => {
   type Wrapper = {
     posts: {
       title: string;
-      featuredImage: TUrl;
+      imageLink: string;
       createdAt: string;
       slug: string;
       excerpt: string;
@@ -110,9 +106,7 @@ export const getSimilarPosts = async (category: string, slug: string) => {
       ) {
         excerpt
         title
-        featuredImage {
-          url
-        }
+        imageLink
         createdAt
         slug
       }
@@ -138,7 +132,7 @@ export const getCategories = async () => {
       categories {
         name
         slug
-        description
+        subtitle
       }
     }
   `;
@@ -175,9 +169,7 @@ export const getCategoryPost = async (slug: string) => {
             slug
             title
             excerpt
-            featuredImage {
-              url
-            }
+            imageLink
             category {
               name
               slug
@@ -205,7 +197,7 @@ export const getPostDetails = async (slug: string) => {
       slug: string;
       title: string;
       excerpt: string;
-      featuredImage: TUrl;
+      imageLink: string;
       category: TCategory;
       content: TContent;
     };
@@ -226,9 +218,7 @@ export const getPostDetails = async (slug: string) => {
         slug
         title
         excerpt
-        featuredImage {
-          url
-        }
+        imageLink
         category {
           name
           slug

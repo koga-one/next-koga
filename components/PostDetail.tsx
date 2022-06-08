@@ -11,7 +11,7 @@ type Props = {
     slug: string;
     title: string;
     excerpt: string;
-    featuredImage: TUrl;
+    imageLink: string;
     category: TCategory;
     content: TContent;
   };
@@ -28,11 +28,11 @@ const PostDetail = ({ post }: Props) => {
     <div className="rounded-lg shadow-lg dark:bg-kami dark:bg-opacity-5">
       <div className="overflow-hidden">
         <div className="relative h-[160px] overflow-hidden rounded-xl lg:h-[400px]">
-          <img
+          {/* <img
             src={post.featuredImage.url}
             alt={post.title}
             className="absolute bottom-1/2 w-full translate-y-1/2 rounded-t-lg object-top"
-          />
+          /> */}
         </div>
       </div>
       <div className="py-8 px-4 lg:p-8">
