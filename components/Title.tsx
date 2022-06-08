@@ -1,9 +1,33 @@
+import { useState, useEffect } from "react";
+
 type Props = {
   title?: string;
   subtitle?: string;
 };
 
+const quotes: string[] = [
+  "fell free to explore the website",
+  "you can install this website!",
+  "dark mode included for the gamers",
+  "i try to post daily (or weekly)",
+  "おはようございます！ (✿◡‿◡)",
+  "nice to meet you. I'm koga!",
+  "the moon is beautiful, isn't it?",
+];
+
 const Title = ({ title, subtitle }: Props) => {
+  const [quote, setQuote] = useState("");
+  useEffect(() => {
+    setQuote(
+      quotes[
+        Math.min(
+          Math.floor(Math.random() * quotes.length * 2),
+          quotes.length - 1
+        )
+      ]
+    );
+  }, []);
+
   return (
     <div className="mb-2 flex min-h-[40vh] flex-col items-center justify-center gap-4 lg:mb-8 lg:gap-8">
       <h1 className="text-center text-6xl lg:text-9xl">
@@ -16,7 +40,7 @@ const Title = ({ title, subtitle }: Props) => {
         )}
       </h1>
       <h2 className="text-xl text-aka dark:text-gure lg:text-4xl">
-        {subtitle ? subtitle : <span>the moon is beautiful, isn't it?</span>}
+        {subtitle ? subtitle : quote}
       </h2>
     </div>
   );
