@@ -13,7 +13,7 @@ const PostGrid = ({ posts }: Props) => {
       <h2 className="text-center text-5xl lg:text-6xl">Posts</h2>
       <div className="mt-8 flex flex-wrap gap-4 lg:gap-x-6 lg:gap-y-4">
         {posts.map((post) => (
-          <PostCard post={post.node}></PostCard>
+          <PostCard post={post.node} key={post.node.slug}></PostCard>
         ))}
       </div>
     </div>

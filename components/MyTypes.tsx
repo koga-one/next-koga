@@ -49,6 +49,6 @@ export type TCardProps = {
 export type TPage = {
   title: string;
   subtitle: string;
-  slug: string;
-  content: TContent;
+  slug?: string;
+  content?: TContent;
 };

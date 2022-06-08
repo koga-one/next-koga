@@ -316,9 +316,6 @@ export const getPages = async () => {
         slug
         subtitle
         title
-        content {
-          raw
-        }
       }
     }
   `;
@@ -339,7 +336,6 @@ export const getPageDetails = async (slug: string) => {
   const query = gql`
     query GetPageDetails($slug: String!) {
       page(where: { slug: $slug }) {
-        slug
         subtitle
         title
         content {
