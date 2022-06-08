@@ -19,7 +19,7 @@ const Navbar = () => {
         </a>
       </Link>
       {pages.map((page) => (
-        <Link href={page.slug!} key={page.slug}>
+        <Link href={`/${page.slug!}`} key={page.slug}>
           <a className="pointer-events-auto">
             <div className="rounded-lg border border-katsu px-4 py-2 font-semibold text-katsu backdrop-blur-md dark:border-kami dark:text-kami">
               {page.title.toLowerCase()}

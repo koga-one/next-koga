@@ -2,7 +2,6 @@ import {
   TAuthor,
   TCategory,
   TContent,
-  TUrl,
   PageWrapper,
   PostDetail,
   Author,

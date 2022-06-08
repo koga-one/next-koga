@@ -8,7 +8,7 @@ type Props = {
     slug: string;
     title: string;
     excerpt: string;
-    featuredImage: TUrl;
+    imageLink: string;
     category: TCategory;
     content: TContent;
   };

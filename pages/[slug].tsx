@@ -7,24 +7,14 @@ import {
   PageWrapper,
   PostWidget,
   Title,
-  TContent,
+  TPage,
 } from "../components";
 
 type Props = {
-  pageDetails: {
-    subtitle: string;
-    title: string;
-    content: TContent;
-  };
+  pageDetails: TPage;
 };
 
 const PageDetails = ({ pageDetails }: Props) => {
-  const [richText, setRichText] = useState<ReactElement>();
-
-  useEffect(() => {
-    setRichText(<RichText content={pageDetails.content.raw} />);
-  }, []);
-
   const router = useRouter();
 
   if (router.isFallback) {
@@ -36,7 +26,11 @@ const PageDetails = ({ pageDetails }: Props) => {
       <div className="container mx-auto">
         <Title title={pageDetails.title} subtitle={pageDetails.subtitle} />
         <div className="mx-2 grid min-h-screen grid-cols-1 gap-2 lg:grid-cols-12 lg:gap-8">
-          <div className="col-span-1 lg:col-span-8">{richText}</div>
+          <div className="col-span-1 lg:col-span-8">
+            <div className="rounded-lg py-8 px-4 shadow-lg dark:bg-kami dark:bg-opacity-5 lg:p-8">
+              <RichText content={pageDetails.content!.raw} />
+            </div>
+          </div>
           <div className="col-span-1 lg:col-span-4">
             <div className="relative lg:sticky lg:top-8">
               <PostWidget />

@@ -1,4 +1,4 @@
-import React, { ReactElement, useEffect, useState } from "react";
+import React from "react";
 import { TAuthor, TUrl, TCategory, TContent } from "./";
 import moment from "moment";
 import { RichText } from "@graphcms/rich-text-react-renderer";
@@ -18,12 +18,6 @@ type Props = {
 };
 
 const PostDetail = ({ post }: Props) => {
-  const [richText, setRichText] = useState<ReactElement>();
-
-  useEffect(() => {
-    setRichText(<RichText content={post.content.raw} />);
-  }, []);
-
   return (
     <div className="rounded-lg shadow-lg dark:bg-kami dark:bg-opacity-5">
       <div className="overflow-hidden">
@@ -61,7 +55,7 @@ const PostDetail = ({ post }: Props) => {
           <h1 className="mb-4 text-center text-3xl font-semibold lg:mb-8 lg:text-left lg:text-6xl">
             {post.title}
           </h1>
-          {richText}
+          <RichText content={post.content.raw} />
         </article>
       </div>
     </div>
