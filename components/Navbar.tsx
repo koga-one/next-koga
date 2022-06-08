@@ -10,7 +10,7 @@ const buttons: { name: string; slug: string }[] = [
 
 const Navbar = () => {
   return (
-    <nav className="pointer-events-none sticky bottom-12 z-50 grid grid-flow-col content-center justify-center gap-2">
+    <nav className="pointer-events-none sticky bottom-12 z-50 my-8 grid grid-flow-col content-center justify-center gap-2">
       {buttons.map((button) => (
         <Link href={button.slug}>
           <a className="pointer-events-auto">
