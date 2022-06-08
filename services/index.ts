@@ -45,6 +45,7 @@ export const getPosts = async () => {
             slug
             title
             excerpt
+            extra
             featuredImage {
               url
             }
@@ -68,25 +69,24 @@ export const getPosts = async () => {
 
 export const getRecentPosts = async () => {
   type Wrapper = {
-    posts: {
-      title: string;
-      featuredImage: TUrl;
-      createdAt: string;
-      slug: string;
-      excerpt: string;
-    }[];
+    posts: TPost[];
   };
 
   const query = gql`
     query GetPostDetails() {
       posts(
         orderBy: createdAt_DESC
-        first: 3
+        first: 1
       ) {
+        category {
+          name
+          slug
+        }
         excerpt
         createdAt
         slug
         title
+        extra
         featuredImage {
           url
         }
@@ -104,23 +104,22 @@ export const getRecentPosts = async () => {
 
 export const getSimilarPosts = async (category: string, slug: string) => {
   type Wrapper = {
-    posts: {
-      title: string;
-      featuredImage: TUrl;
-      createdAt: string;
-      slug: string;
-      excerpt: string;
-    }[];
+    posts: TPost[];
   };
 
   const query = gql`
     query GetPostDetails($slug: String!, $category: String!) {
       posts(
         where: { slug_not: $slug, AND: { category: { slug: $category } } }
-        last: 3
+        first: 2
       ) {
         excerpt
         title
+        extra
+        category {
+          name
+          slug
+        }
         featuredImage {
           url
         }
@@ -208,6 +207,7 @@ export const getCategoryPost = async (slug: string) => {
             slug
             title
             excerpt
+            extra
             featuredImage {
               url
             }
@@ -240,6 +240,7 @@ export const getPostDetails = async (slug: string) => {
       excerpt: string;
       featuredImage: TUrl;
       category: TCategory;
+      extra: JSON;
       content: TContent;
     };
   };
@@ -259,6 +260,7 @@ export const getPostDetails = async (slug: string) => {
         slug
         title
         excerpt
+        extra
         featuredImage {
           url
         }
