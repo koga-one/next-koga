@@ -56,7 +56,12 @@ const PostDetail = ({ post }: Props) => {
             {post.title}
           </h1>
           <div className="rich-text">
-            <RichText content={post.content.raw} />
+            <RichText
+              content={post.content.raw}
+              renderers={{
+                code_block: ({ children }) => <pre>{children}</pre>,
+              }}
+            />
           </div>
         </article>
       </div>
