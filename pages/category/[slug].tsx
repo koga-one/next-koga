@@ -16,7 +16,6 @@ type Props = {
 
 const CategoryPost = ({ posts }: Props) => {
   const router = useRouter();
-  const categoryName = router.asPath.split("/")[2];
 
   if (router.isFallback) {
     return <div>Loader</div>;
@@ -53,6 +52,7 @@ type StaticProps = {
 // Fetch data at build time
 export async function getStaticProps({ params }: StaticProps) {
   const posts = await getCategoryPost(params.slug);
+  const categoryData = 
 
   return {
     props: { posts },
