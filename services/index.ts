@@ -133,7 +133,6 @@ export const getCategories = async () => {
       categories {
         name
         slug
-        subtitle
       }
     }
   `;
@@ -144,6 +143,29 @@ export const getCategories = async () => {
   );
 
   return result.categories;
+};
+
+export const getCategoryData = async (slug: string) => {
+  type Wrapper = {
+    category: TCategory;
+  };
+
+  const query = gql`
+    query GetCategoryData($slug: String!) {
+      category(where: { slug: $slug }) {
+        subtitle
+        name
+      }
+    }
+  `;
+
+  const result: Wrapper = await request(
+    typeof graphqlAPI === "string" ? graphqlAPI : "",
+    query,
+    { slug }
+  );
+
+  return result.category;
 };
 
 export const getCategoryPost = async (slug: string) => {
