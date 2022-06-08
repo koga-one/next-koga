@@ -6,6 +6,7 @@ import {
   TAuthor,
   TComment,
   TContent,
+  TPage,
 } from "../components";
 
 const graphqlAPI = process.env.NEXT_PUBLIC_GRAPHCMS_ENDPOINT;
@@ -280,4 +281,57 @@ export const getComments = async (slug: string) => {
   );
 
   return result.comments;
+};
+
+export const getPages = async () => {
+  type Wrapper = {
+    pages: TPage[];
+  };
+
+  const query = gql`
+    query GetPages {
+      pages {
+        slug
+        subtitle
+        title
+        content {
+          raw
+        }
+      }
+    }
+  `;
+
+  const result: Wrapper = await request(
+    typeof graphqlAPI === "string" ? graphqlAPI : "",
+    query
+  );
+
+  return result.pages;
+};
+
+export const getPageDetails = async (slug: string) => {
+  type Wrapper = {
+    page: TPage;
+  };
+
+  const query = gql`
+    query GetPageDetails($slug: String!) {
+      page(where: { slug: $slug }) {
+        slug
+        subtitle
+        title
+        content {
+          raw
+        }
+      }
+    }
+  `;
+
+  const result: Wrapper = await request(
+    typeof graphqlAPI === "string" ? graphqlAPI : "",
+    query,
+    { slug }
+  );
+
+  return result.page;
 };

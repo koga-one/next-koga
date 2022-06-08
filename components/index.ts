@@ -21,4 +21,5 @@ export type {
   TContent,
   TComment,
   TCardProps,
+  TPage,
 } from "./MyTypes";

@@ -45,3 +45,10 @@ export type TCardProps = {
   post: TPost;
   children: React.ReactElement;
 };
+
+export type TPage = {
+  title: string;
+  subtitle: string;
+  slug: string;
+  content: TContent;
+};
