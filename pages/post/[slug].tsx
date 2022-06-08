@@ -1,6 +1,6 @@
 import React from "react";
 import { getPosts, getPostDetails } from "../../services";
-import { TContent, TAuthor, TCategory } from "../../components";
+import { TContent, TAuthor, TCategory, TUrl } from "../../components";
 import { NextPage } from "next";
 import loadable from "@loadable/component";
 
@@ -11,7 +11,7 @@ type Props = {
     slug: string;
     title: string;
     excerpt: string;
-    imageLink: string;
+    featuredImage: TUrl;
     category: TCategory;
     content: TContent;
   };

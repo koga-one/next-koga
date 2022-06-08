@@ -10,6 +10,16 @@ import {
 } from "../components";
 
 const graphqlAPI = process.env.NEXT_PUBLIC_GRAPHCMS_ENDPOINT;
+const unsplashAPI = process.env.NEXT_PUBLIC_UNSPLASH_ENDPOINT;
+const unsplashAccessKey = process.env.NEXT_PUBLIC_UNSPLASH_ACCESS_KEY;
+
+export const getImage = async (id: string) => {
+  const result = await fetch(
+    `${unsplashAPI!}/photos/${id}?client_id=${unsplashAccessKey!}`
+  );
+
+  return result.json();
+};
 
 export const getPosts = async () => {
   type Wrapper = {
@@ -35,7 +45,9 @@ export const getPosts = async () => {
             slug
             title
             excerpt
-            imageLink
+            featuredImage {
+              url
+            }
             category {
               name
               slug
@@ -58,7 +70,7 @@ export const getRecentPosts = async () => {
   type Wrapper = {
     posts: {
       title: string;
-      imageLink: string;
+      featuredImage: TUrl;
       createdAt: string;
       slug: string;
       excerpt: string;
@@ -75,7 +87,9 @@ export const getRecentPosts = async () => {
         createdAt
         slug
         title
-        imageLink
+        featuredImage {
+          url
+        }
       }
     }
   `;
@@ -92,7 +106,7 @@ export const getSimilarPosts = async (category: string, slug: string) => {
   type Wrapper = {
     posts: {
       title: string;
-      imageLink: string;
+      featuredImage: TUrl;
       createdAt: string;
       slug: string;
       excerpt: string;
@@ -107,7 +121,9 @@ export const getSimilarPosts = async (category: string, slug: string) => {
       ) {
         excerpt
         title
-        imageLink
+        featuredImage {
+          url
+        }
         createdAt
         slug
       }
@@ -192,7 +208,9 @@ export const getCategoryPost = async (slug: string) => {
             slug
             title
             excerpt
-            imageLink
+            featuredImage {
+              url
+            }
             category {
               name
               slug
@@ -220,7 +238,7 @@ export const getPostDetails = async (slug: string) => {
       slug: string;
       title: string;
       excerpt: string;
-      imageLink: string;
+      featuredImage: TUrl;
       category: TCategory;
       content: TContent;
     };
@@ -241,7 +259,9 @@ export const getPostDetails = async (slug: string) => {
         slug
         title
         excerpt
-        imageLink
+        featuredImage {
+          url
+        }
         category {
           name
           slug

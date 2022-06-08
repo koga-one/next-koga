@@ -5,7 +5,8 @@ export type TPost = {
   createdAt: string;
   slug: string;
   title: string;
-  imageLink: string;
+  featuredImage: TUrl;
+  imageLink?: string;
   author: TAuthor;
   category?: TCategory;
   excerpt: string;

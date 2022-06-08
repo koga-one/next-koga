@@ -9,6 +9,7 @@ import {
   Comments,
   PostWidget,
   Categories,
+  TUrl,
 } from "../";
 
 type Props = {
@@ -18,7 +19,7 @@ type Props = {
     slug: string;
     title: string;
     excerpt: string;
-    imageLink: string;
+    featuredImage: TUrl;
     category: TCategory;
     content: TContent;
   };
