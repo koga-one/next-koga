@@ -10,10 +10,10 @@ const quotes: string[] = [
   "you can install this website!",
   "dark mode included for the gamers",
   "i try to post daily (or weekly)",
-  "おはようございます！ (✿◡‿◡)",
+  "おはようございます！",
   "nice to meet you. I'm koga!",
-  "the moon is beautiful, isn't it?",
   "bem vindo ao meu site. welcome!",
+  "the moon is beautiful, isn't it?",
 ];
 
 const Title = ({ title, subtitle }: Props) => {
