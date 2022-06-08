@@ -28,7 +28,9 @@ const PageDetails = ({ pageDetails }: Props) => {
         <div className="mx-2 grid min-h-screen grid-cols-1 gap-2 lg:grid-cols-12 lg:gap-8">
           <div className="col-span-1 lg:col-span-8">
             <div className="rounded-lg py-8 px-4 shadow-lg dark:bg-kami dark:bg-opacity-5 lg:p-8">
-              <RichText content={pageDetails.content!.raw} />
+              <div className="rich-text">
+                <RichText content={pageDetails.content!.raw} />
+              </div>
             </div>
           </div>
           <div className="col-span-1 lg:col-span-4">

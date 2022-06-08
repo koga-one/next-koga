@@ -55,7 +55,9 @@ const PostDetail = ({ post }: Props) => {
           <h1 className="mb-4 text-center text-3xl font-semibold lg:mb-8 lg:text-left lg:text-6xl">
             {post.title}
           </h1>
-          <RichText content={post.content.raw} />
+          <div className="rich-text">
+            <RichText content={post.content.raw} />
+          </div>
         </article>
       </div>
     </div>
