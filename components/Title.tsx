@@ -13,6 +13,7 @@ const quotes: string[] = [
   "おはようございます！ (✿◡‿◡)",
   "nice to meet you. I'm koga!",
   "the moon is beautiful, isn't it?",
+  "bem vindo ao meu site. welcome!",
 ];
 
 const Title = ({ title, subtitle }: Props) => {
