@@ -29,7 +29,12 @@ const PageDetails = ({ pageDetails }: Props) => {
           <div className="col-span-1 lg:col-span-8">
             <div className="rounded-lg py-8 px-4 shadow-lg dark:bg-kami dark:bg-opacity-5 lg:p-8">
               <div className="rich-text">
-                <RichText content={pageDetails.content!.raw} />
+                <RichText
+                  content={pageDetails.content!.raw}
+                  renderers={{
+                    code_block: ({ children }) => <pre>{children}</pre>,
+                  }}
+                />
               </div>
             </div>
           </div>

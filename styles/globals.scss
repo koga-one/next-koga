@@ -34,25 +34,25 @@ a {
 
 .rich-text {
   * {
-    @apply mb-2;
+    @apply mb-4;
   }
   h1 {
-    @apply text-5xl;
+    @apply mb-12 text-5xl;
   }
   h2 {
-    @apply text-4xl;
+    @apply mb-8 text-4xl;
   }
   h3 {
-    @apply text-3xl;
+    @apply mb-4 text-3xl;
   }
   h4 {
-    @apply text-2xl;
+    @apply mb-3 text-2xl;
   }
   h5 {
-    @apply text-xl;
+    @apply mb-2 text-xl;
   }
   h6 {
-    @apply text-lg;
+    @apply mb-1 text-lg;
   }
   p {
   }
@@ -64,18 +64,25 @@ a {
   u {
   }
   blockquote {
+    @apply border-l-4 border-gure pl-4;
   }
   code {
+    @apply rounded px-1 font-fira dark:bg-[#0C0C0C];
   }
   a {
+    @apply text-aka underline;
   }
   ul {
+    @apply list-disc pl-4;
   }
   ol {
+    @apply list-decimal pl-4;
   }
   li {
+    @apply marker:text-aka;
   }
   pre {
+    @apply rounded p-4 px-6 font-fira dark:bg-[#0C0C0C];
   }
 }
 

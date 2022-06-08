@@ -13,6 +13,7 @@ module.exports = {
       aka: "#F43F5E",
       ki: "#EAB308",
       midori: "#59C274",
+      aoi: "#0b9bd0",
     },
     fontFamily: {
       garamond: "EB Garamond, serif",
@@ -20,5 +21,5 @@ module.exports = {
       fira: "Fira Code, monospace",
     },
   },
-  plugins: [],
+  plugins: [require("@tailwindcss/typography")],
 };
