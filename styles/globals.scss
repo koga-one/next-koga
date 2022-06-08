@@ -33,41 +33,44 @@ a {
 }
 
 .rich-text {
-  * {
-    @apply mb-4;
+  *:not(li) {
+    @apply mb-6;
+  }
+  li {
+    @apply mb-2;
   }
   h1 {
-    @apply mb-12 text-5xl;
+    @apply mb-6 text-3xl lg:mb-12 lg:text-5xl;
   }
   h2 {
-    @apply mb-8 text-4xl;
+    @apply mb-5 text-2xl lg:mb-8 lg:text-4xl;
   }
   h3 {
-    @apply mb-4 text-3xl;
+    @apply mb-4 text-xl lg:mb-4 lg:text-3xl;
   }
   h4 {
-    @apply mb-3 text-2xl;
+    @apply mb-3 text-lg lg:mb-3 lg:text-2xl;
   }
   h5 {
-    @apply mb-2 text-xl;
+    @apply mb-2 lg:mb-2 lg:text-xl;
   }
   h6 {
-    @apply mb-1 text-lg;
+    @apply mb-2 lg:mb-2 lg:text-lg;
   }
   p {
   }
   b {
     @apply dark:text-kami;
   }
-  i {
-  }
-  u {
-  }
+  // i {
+  // }
+  // u {
+  // }
   blockquote {
     @apply border-l-4 border-gure pl-4;
   }
   code {
-    @apply rounded px-1 font-fira dark:bg-[#0C0C0C];
+    @apply rounded bg-gure px-2 font-fira dark:bg-[#0C0C0C];
   }
   a {
     @apply text-aka underline;
@@ -82,7 +85,7 @@ a {
     @apply marker:text-aka;
   }
   pre {
-    @apply rounded p-4 px-6 font-fira dark:bg-[#0C0C0C];
+    @apply rounded bg-gure p-4 px-6 font-fira dark:bg-[#0C0C0C];
   }
 }
 

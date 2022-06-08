@@ -52,7 +52,7 @@ const PostDetail = ({ post }: Props) => {
           </span>
         </div>
         <article>
-          <h1 className="mb-4 text-center text-3xl font-semibold lg:mb-8 lg:text-left lg:text-6xl">
+          <h1 className="mb-6 text-center text-3xl font-semibold lg:mb-12 lg:text-left lg:text-6xl">
             {post.title}
           </h1>
           <div className="rich-text">
