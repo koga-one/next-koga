@@ -16,7 +16,7 @@ const Navbar = () => {
           <a className="pointer-events-auto">
             <div
               key={button.slug}
-              className="rounded-lg border bg-katsu bg-opacity-50 px-4 py-2 font-semibold text-kami backdrop-blur-md dark:bg-kami dark:bg-opacity-50 dark:text-katsu"
+              className="rounded-lg border border-katsu px-4 py-2 font-semibold text-katsu backdrop-blur-md dark:border-kami dark:text-kami"
             >
               {button.name.toLowerCase()}
             </div>

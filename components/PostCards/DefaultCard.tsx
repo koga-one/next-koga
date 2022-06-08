@@ -5,7 +5,7 @@ const DefaultCard = ({ className, post, children }: TCardProps) => {
   return (
     <div className={className}>
       {children}
-      <div className="mt-2 flex flex-row rounded-xl border">
+      <div className="mt-2 flex flex-row rounded-xl border dark:bg-katsu">
         <div className="relative min-h-[100px] min-w-[100px]">
           <Image
             className="rounded-xl"

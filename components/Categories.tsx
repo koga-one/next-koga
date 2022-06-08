@@ -15,8 +15,8 @@ const Categories = () => {
       {categories.map((category) => (
         <Link key={category.slug} href={`/category/${category.slug}`}>
           <a>
-            <div className="rounded-lg border border-katsu px-4 py-2 font-semibold backdrop-blur-md dark:border-gure dark:bg-kami dark:bg-opacity-5">
-              {category.name}
+            <div className="rounded-lg border border-katsu px-4 py-2 font-semibold backdrop-blur-md dark:border-gure dark:bg-katsu">
+              <p className="dark:text-kami">{category.name}</p>
             </div>
           </a>
         </Link>

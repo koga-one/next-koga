@@ -8,6 +8,7 @@ import {
   PageWrapper,
   PostGrid,
   PostWidget,
+  Title,
 } from "../../components";
 
 type Props = {
@@ -25,9 +26,7 @@ const CategoryPost = ({ posts }: Props) => {
   return (
     <PageWrapper title={categoryName}>
       <div className="container mx-auto">
-        <h1 className="mb-8 text-center text-6xl lg:mb-16 lg:text-9xl">
-          koga<span className="text-aka">.</span>one
-        </h1>
+        <Title />
         <div className="mx-2 grid min-h-screen grid-cols-1 gap-2 lg:grid-cols-12 lg:gap-8">
           <div className="col-span-1 lg:col-span-8">
             <PostGrid posts={posts} title={categoryName} />

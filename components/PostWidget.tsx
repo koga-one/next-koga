@@ -43,7 +43,7 @@ const PostWidget = ({ category, slug }: Props) => {
                   {moment(post.createdAt).format("MMM DD, YYYY")}
                 </p>
               </div>
-              <div className="mt-2 flex flex-row rounded-xl border">
+              <div className="mt-2 flex flex-row rounded-xl border dark:bg-katsu">
                 <div className="relative min-h-[80px] min-w-[80px]">
                   <Image
                     className="rounded-xl"
