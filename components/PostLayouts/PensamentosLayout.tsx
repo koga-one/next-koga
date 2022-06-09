@@ -1,4 +1,6 @@
 import { RichText } from "@graphcms/rich-text-react-renderer";
+import moment from "moment";
+import Image from "next/image";
 import {
   TAuthor,
   TCategory,
@@ -45,18 +47,12 @@ const PensamentosLayout = ({ post }: Props) => {
               ></iframe>
               <div className="overflow-hidden py-8 px-4 lg:p-8">
                 <article>
-                  <h1 className="-m-16 mb-4 max-h-[8ch] overflow-hidden break-all text-center font-fira text-3xl font-semibold lg:mb-8 lg:text-left lg:text-6xl">
+                  <h1 className="-m-16 mb-4 max-h-[8.5ch] overflow-hidden break-all text-center font-fira text-4xl font-semibold lg:mb-8 lg:max-h-[9ch] lg:text-left lg:text-6xl">
                     {post.title} {post.title} {post.title} {post.title}{" "}
                     {post.title} {post.title} {post.title} {post.title}{" "}
                     {post.title} {post.title} {post.title} {post.title}{" "}
                     {post.title} {post.title} {post.title} {post.title}{" "}
                   </h1>
-                  <PostHeader
-                    createdAt={post.createdAt}
-                    authorUrl={post.author.photo.url}
-                    authorName={post.author.name}
-                    categoryName={post.category.name}
-                  />
                   <div className="rich-text">
                     <RichText
                       content={post.content.raw}
@@ -66,6 +62,27 @@ const PensamentosLayout = ({ post }: Props) => {
                     />
                   </div>
                 </article>
+                <div className="flex flex-wrap items-center justify-center gap-2 lg:justify-start">
+                  <span className="rounded-lg border border-katsu px-4 text-sm font-semibold dark:border-kami dark:text-kami lg:order-2 lg:text-base">
+                    {moment(post.createdAt).format("MMM DD, YYYY")}
+                  </span>
+                  <div className="lg:order-0 h-10">
+                    <Image
+                      src={post.author.photo.url}
+                      alt={post.author.name}
+                      className="rounded-full"
+                      height="40px"
+                      width="40px"
+                      layout="fixed"
+                    />
+                  </div>
+                  <span className="hidden rounded-lg border border-katsu px-4 text-sm font-semibold dark:border-kami dark:text-kami lg:order-1 lg:inline lg:text-base">
+                    {post.author.name}
+                  </span>
+                  <span className="rounded-lg border border-katsu px-4 text-sm font-semibold dark:border-kami dark:text-kami lg:order-4 lg:text-base">
+                    {post.category.name}
+                  </span>
+                </div>
               </div>
             </div>
             <Author author={post.author} />
