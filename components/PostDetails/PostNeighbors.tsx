@@ -21,7 +21,7 @@ const PostNeighbors = ({ createdAt }: Props) => {
     <div className="grid grid-cols-2 gap-x-2">
       {previousPost && (
         <Link href={`/post/${previousPost.slug}`}>
-          <a className="w-full place-self-start overflow-hidden text-ellipsis whitespace-nowrap rounded-lg border px-4 font-semibold text-katsu dark:border-gure dark:font-normal dark:text-kami">
+          <a className="max-w-full place-self-start overflow-hidden text-ellipsis whitespace-nowrap rounded-lg border px-4 font-semibold text-katsu dark:border-gure dark:font-normal dark:text-kami">
             <span className="font-fira">{"<- "}</span>
             {previousPost.title}
           </a>
@@ -30,7 +30,7 @@ const PostNeighbors = ({ createdAt }: Props) => {
       {!previousPost && <div></div>}
       {nextPost && (
         <Link href={`/post/${nextPost.slug}`}>
-          <a className="w-full place-self-end overflow-hidden text-ellipsis whitespace-nowrap rounded-lg border px-4 text-right font-semibold text-katsu dark:border-gure dark:font-normal dark:text-kami">
+          <a className="max-w-full place-self-end overflow-hidden text-ellipsis whitespace-nowrap rounded-lg border px-4 text-right font-semibold text-katsu dark:border-gure dark:font-normal dark:text-kami">
             {nextPost.title}
             <span className="font-fira">{" ->"}</span>
           </a>
