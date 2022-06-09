@@ -199,7 +199,6 @@ export const getCategoryPost = async (slug: string) => {
             author {
               bio
               name
-              id
               photo {
                 url
               }
@@ -231,6 +230,120 @@ export const getCategoryPost = async (slug: string) => {
   return result.postsConnection.edges;
 };
 
+export const getNextPost = async (date: string) => {
+  type Wrapper = {
+    posts: {
+      author: TAuthor;
+      publishedAt: string;
+      slug: string;
+      title: string;
+      excerpt: string;
+      featuredImage: TUrl;
+      category: TCategory;
+      extra: string;
+      content: TContent;
+    }[];
+  };
+
+  const query = gql`
+    query GetNextPost($date: DateTime!) {
+      posts(
+        where: { publishedAt_gt: $date }
+        first: 1
+        orderBy: publishedAt_ASC
+      ) {
+        author {
+          bio
+          name
+          photo {
+            url
+          }
+        }
+        publishedAt
+        slug
+        title
+        excerpt
+        extra
+        featuredImage {
+          url
+        }
+        category {
+          name
+          slug
+        }
+        content {
+          raw
+        }
+      }
+    }
+  `;
+
+  const result: Wrapper = await request(
+    typeof graphqlAPI === "string" ? graphqlAPI : "",
+    query,
+    { date }
+  );
+
+  return result.posts[0];
+};
+
+export const getPreviousPost = async (date: string) => {
+  type Wrapper = {
+    posts: {
+      author: TAuthor;
+      publishedAt: string;
+      slug: string;
+      title: string;
+      excerpt: string;
+      featuredImage: TUrl;
+      category: TCategory;
+      extra: string;
+      content: TContent;
+    }[];
+  };
+
+  const query = gql`
+    query GetPreviousPost($date: DateTime!) {
+      posts(
+        where: { publishedAt_lt: $date }
+        first: 1
+        orderBy: publishedAt_DESC
+      ) {
+        author {
+          bio
+          name
+          photo {
+            url
+          }
+        }
+        publishedAt
+        slug
+        title
+        excerpt
+        extra
+        featuredImage {
+          url
+        }
+        category {
+          name
+          slug
+        }
+        content {
+          raw
+        }
+      }
+    }
+  `;
+
+  const result: Wrapper = await request(
+    typeof graphqlAPI === "string" ? graphqlAPI : "",
+    query,
+    { date }
+  );
+
+  return result.posts[0];
+};
+
 export const getPostDetails = async (slug: string) => {
   type Wrapper = {
     post: {
@@ -252,7 +365,6 @@ export const getPostDetails = async (slug: string) => {
         author {
           bio
           name
-          id
           photo {
             url
           }

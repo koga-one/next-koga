@@ -13,7 +13,7 @@ import {
   Categories,
   TUrl,
 } from "../";
-import { PostHeader } from "../PostDetails";
+import { PostNeighbors } from "../PostDetails";
 
 type Props = {
   post: {
@@ -35,6 +35,9 @@ const PensamentosLayout = ({ post }: Props) => {
       <div className="container mx-auto">
         <div className="mx-2 grid min-h-screen grid-cols-1 gap-2 lg:grid-cols-12 lg:gap-8">
           <div className="col-span-1 lg:col-span-8">
+            <div className="mb-2">
+              <PostNeighbors publishedAt={post.publishedAt} />
+            </div>
             <div className="rounded-xl border bg-[#fff] shadow-lg dark:bg-[#000]">
               <iframe
                 className="h-[40vh] rounded-xl"
@@ -46,6 +49,8 @@ const PensamentosLayout = ({ post }: Props) => {
               <div className="overflow-hidden py-8 px-4 lg:p-8">
                 <article>
                   <h1 className="-m-16 mb-4 max-h-[12ch] overflow-hidden break-all text-center font-fira text-4xl font-semibold lg:mb-8 lg:max-h-[9ch] lg:text-left lg:text-6xl">
+                    {post.title} {post.title} {post.title} {post.title}{" "}
+                    {post.title} {post.title} {post.title} {post.title}{" "}
                     {post.title} {post.title} {post.title} {post.title}{" "}
                     {post.title} {post.title} {post.title} {post.title}{" "}
                     {post.title} {post.title} {post.title} {post.title}{" "}
@@ -82,6 +87,9 @@ const PensamentosLayout = ({ post }: Props) => {
                   </span>
                 </div>
               </div>
+            </div>
+            <div className="mt-2">
+              <PostNeighbors publishedAt={post.publishedAt} />
             </div>
             <Author author={post.author} />
             <CommentsForm slug={post.slug} />
