@@ -85,7 +85,7 @@ a {
     @apply marker:text-aka;
   }
   pre {
-    @apply whitespace-pre-line rounded bg-gure p-4 px-6 font-fira dark:bg-[#0C0C0C];
+    @apply whitespace-pre-line rounded bg-gure p-2 px-4 font-fira text-sm dark:bg-[#0C0C0C] lg:text-base;
   }
 }
 
