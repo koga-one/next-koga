@@ -7,7 +7,7 @@ import loadable from "@loadable/component";
 type Props = {
   post: {
     author: TAuthor;
-    publishedAt: string;
+    createdAt: string;
     slug: string;
     title: string;
     excerpt: string;

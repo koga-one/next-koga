@@ -30,7 +30,7 @@ export const getPosts = async () => {
 
   const query = gql`
     query MyQuery {
-      postsConnection(orderBy: publishedAt_DESC) {
+      postsConnection(orderBy: createdAt_DESC) {
         edges {
           node {
             author {
@@ -41,7 +41,53 @@ export const getPosts = async () => {
                 url
               }
             }
-            publishedAt
+            createdAt
+            slug
+            title
+            excerpt
+            extra
+            featuredImage {
+              url
+            }
+            category {
+              name
+              slug
+            }
+          }
+        }
+      }
+    }
+  `;
+
+  const result: Wrapper = await request(
+    typeof graphqlAPI === "string" ? graphqlAPI : "",
+    query
+  );
+
+  return result.postsConnection.edges;
+};
+
+export const getFeaturedPosts = async () => {
+  type Wrapper = {
+    postsConnection: {
+      edges: { node: TPost }[];
+    };
+  };
+
+  const query = gql`
+    query MyQuery {
+      postsConnection(orderBy: createdAt_DESC, where: { featuredPost: true }) {
+        edges {
+          node {
+            author {
+              bio
+              name
+              id
+              photo {
+                url
+              }
+            }
+            createdAt
             slug
             title
             excerpt
@@ -75,7 +121,7 @@ export const getRecentPosts = async () => {
   const query = gql`
     query GetPostDetails() {
       posts(
-        orderBy: publishedAt_DESC
+        orderBy: createdAt_DESC
         first: 1
       ) {
         category {
@@ -83,7 +129,7 @@ export const getRecentPosts = async () => {
           slug
         }
         excerpt
-        publishedAt
+        createdAt
         slug
         title
         extra
@@ -111,7 +157,7 @@ export const getSimilarPosts = async (category: string, slug: string) => {
     query GetPostDetails($slug: String!, $category: String!) {
       posts(
         where: { slug_not: $slug, AND: { category: { slug: $category } } }
-        orderBy: publishedAt_DESC
+        orderBy: createdAt_DESC
         first: 2
       ) {
         excerpt
@@ -124,7 +170,7 @@ export const getSimilarPosts = async (category: string, slug: string) => {
         featuredImage {
           url
         }
-        publishedAt
+        createdAt
         slug
       }
     }
@@ -203,7 +249,7 @@ export const getCategoryPost = async (slug: string) => {
                 url
               }
             }
-            publishedAt
+            createdAt
             slug
             title
             excerpt
@@ -234,7 +280,7 @@ export const getNextPost = async (date: string) => {
   type Wrapper = {
     posts: {
       author: TAuthor;
-      publishedAt: string;
+      createdAt: string;
       slug: string;
       title: string;
       excerpt: string;
@@ -247,11 +293,7 @@ export const getNextPost = async (date: string) => {
 
   const query = gql`
     query GetNextPost($date: DateTime!) {
-      posts(
-        where: { publishedAt_gt: $date }
-        first: 1
-        orderBy: publishedAt_ASC
-      ) {
+      posts(where: { createdAt_gt: $date }, first: 1, orderBy: createdAt_ASC) {
         author {
           bio
           name
@@ -259,7 +301,7 @@ export const getNextPost = async (date: string) => {
             url
           }
         }
-        publishedAt
+        createdAt
         slug
         title
         excerpt
@@ -291,7 +333,7 @@ export const getPreviousPost = async (date: string) => {
   type Wrapper = {
     posts: {
       author: TAuthor;
-      publishedAt: string;
+      createdAt: string;
       slug: string;
       title: string;
       excerpt: string;
@@ -304,11 +346,7 @@ export const getPreviousPost = async (date: string) => {
 
   const query = gql`
     query GetPreviousPost($date: DateTime!) {
-      posts(
-        where: { publishedAt_lt: $date }
-        first: 1
-        orderBy: publishedAt_DESC
-      ) {
+      posts(where: { createdAt_lt: $date }, first: 1, orderBy: createdAt_DESC) {
         author {
           bio
           name
@@ -316,7 +354,7 @@ export const getPreviousPost = async (date: string) => {
             url
           }
         }
-        publishedAt
+        createdAt
         slug
         title
         excerpt
@@ -348,7 +386,7 @@ export const getPostDetails = async (slug: string) => {
   type Wrapper = {
     post: {
       author: TAuthor;
-      publishedAt: string;
+      createdAt: string;
       slug: string;
       title: string;
       excerpt: string;
@@ -369,7 +407,7 @@ export const getPostDetails = async (slug: string) => {
             url
           }
         }
-        publishedAt
+        createdAt
         slug
         title
         excerpt

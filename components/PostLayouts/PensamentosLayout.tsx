@@ -18,7 +18,7 @@ import { PostNeighbors } from "../PostDetails";
 type Props = {
   post: {
     author: TAuthor;
-    publishedAt: string;
+    createdAt: string;
     slug: string;
     title: string;
     excerpt: string;
@@ -36,7 +36,7 @@ const PensamentosLayout = ({ post }: Props) => {
         <div className="mx-2 grid min-h-screen grid-cols-1 gap-2 lg:grid-cols-12 lg:gap-8">
           <div className="col-span-1 lg:col-span-8">
             <div className="mb-2">
-              <PostNeighbors publishedAt={post.publishedAt} />
+              <PostNeighbors createdAt={post.createdAt} />
             </div>
             <div className="rounded-xl border bg-[#fff] shadow-lg dark:bg-[#000]">
               <iframe
@@ -67,7 +67,7 @@ const PensamentosLayout = ({ post }: Props) => {
                 </article>
                 <div className="flex flex-wrap items-center justify-center gap-2 lg:justify-start">
                   <span className="rounded-lg border border-katsu px-4 text-sm font-semibold dark:border-kami dark:text-kami lg:order-2 lg:text-base">
-                    {moment(post.publishedAt).format("MMM DD, YYYY")}
+                    {moment(post.createdAt).format("MMM DD, YYYY")}
                   </span>
                   <div className="lg:order-0 h-10">
                     <Image
@@ -89,7 +89,7 @@ const PensamentosLayout = ({ post }: Props) => {
               </div>
             </div>
             <div className="mt-2">
-              <PostNeighbors publishedAt={post.publishedAt} />
+              <PostNeighbors createdAt={post.createdAt} />
             </div>
             <Author author={post.author} />
             <CommentsForm slug={post.slug} />

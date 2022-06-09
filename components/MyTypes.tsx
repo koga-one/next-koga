@@ -1,7 +1,7 @@
 import { RichTextContent } from "@graphcms/rich-text-types";
 
 export type TPost = {
-  publishedAt: string;
+  createdAt: string;
   slug: string;
   title: string;
   featuredImage: TUrl;

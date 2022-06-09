@@ -30,7 +30,7 @@ const PostCard = ({ post }: Props) => {
               {post.category ? post.category.name : "Default"}
             </p>
             <p className="rounded-lg bg-gure px-4 text-sm font-semibold text-kami dark:bg-gure dark:text-katsu">
-              {moment(post.publishedAt).format("MMM DD, YYYY")}
+              {moment(post.createdAt).format("MMM DD, YYYY")}
             </p>
           </div>
           <div className="mt-2 h-full overflow-hidden rounded-xl border dark:bg-katsu">

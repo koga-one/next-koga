@@ -15,7 +15,7 @@ import { PostArticle, PostHeader, PostImage } from "../PostDetails";
 type Props = {
   post: {
     author: TAuthor;
-    publishedAt: string;
+    createdAt: string;
     slug: string;
     title: string;
     excerpt: string;
@@ -37,7 +37,7 @@ const DefaultLayout = ({ post }: Props) => {
               </div>
               <div className="py-8 px-4 lg:p-8">
                 <PostHeader
-                  publishedAt={post.publishedAt}
+                  createdAt={post.createdAt}
                   authorUrl={post.author.photo.url}
                   authorName={post.author.name}
                   categoryName={post.category.name}

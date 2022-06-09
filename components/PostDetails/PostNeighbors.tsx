@@ -4,16 +4,16 @@ import { getNextPost, getPreviousPost } from "../../services";
 import { TPost } from "../MyTypes";
 
 type Props = {
-  publishedAt: string;
+  createdAt: string;
 };
 
-const PostNeighbors = ({ publishedAt }: Props) => {
+const PostNeighbors = ({ createdAt }: Props) => {
   const [nextPost, setnextPost] = useState<TPost>();
   const [previousPost, setpreviousPost] = useState<TPost>();
   useEffect(() => {
-    getNextPost(publishedAt).then((result) => setnextPost(result));
-    getPreviousPost(publishedAt).then((result) => setpreviousPost(result));
-  }, [publishedAt]);
+    getNextPost(createdAt).then((result) => setnextPost(result));
+    getPreviousPost(createdAt).then((result) => setpreviousPost(result));
+  }, [createdAt]);
 
   return (
     <div className="grid grid-cols-2">
