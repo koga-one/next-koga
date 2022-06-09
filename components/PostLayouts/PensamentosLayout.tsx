@@ -18,7 +18,7 @@ import { PostHeader } from "../PostDetails";
 type Props = {
   post: {
     author: TAuthor;
-    createdAt: string;
+    publishedAt: string;
     slug: string;
     title: string;
     excerpt: string;
@@ -30,8 +30,6 @@ type Props = {
 };
 
 const PensamentosLayout = ({ post }: Props) => {
-  const extra: { spotify: string } = JSON.parse(post.extra!);
-
   return (
     <PageWrapper title={post.title}>
       <div className="container mx-auto">
@@ -39,15 +37,15 @@ const PensamentosLayout = ({ post }: Props) => {
           <div className="col-span-1 lg:col-span-8">
             <div className="rounded-xl border bg-[#fff] shadow-lg dark:bg-[#000]">
               <iframe
-                className="h-[54vh] rounded-xl lg:h-[40vh]"
-                src={`https://open.spotify.com/embed/track/${extra.spotify}`}
+                className="h-[40vh] rounded-xl"
+                src={`https://open.spotify.com/embed/track/${post.extra!}`}
                 width="100%"
                 frameBorder="0"
                 allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
               ></iframe>
               <div className="overflow-hidden py-8 px-4 lg:p-8">
                 <article>
-                  <h1 className="-m-16 mb-4 max-h-[8.5ch] overflow-hidden break-all text-center font-fira text-4xl font-semibold lg:mb-8 lg:max-h-[9ch] lg:text-left lg:text-6xl">
+                  <h1 className="-m-16 mb-4 max-h-[12ch] overflow-hidden break-all text-center font-fira text-4xl font-semibold lg:mb-8 lg:max-h-[9ch] lg:text-left lg:text-6xl">
                     {post.title} {post.title} {post.title} {post.title}{" "}
                     {post.title} {post.title} {post.title} {post.title}{" "}
                     {post.title} {post.title} {post.title} {post.title}{" "}
@@ -64,7 +62,7 @@ const PensamentosLayout = ({ post }: Props) => {
                 </article>
                 <div className="flex flex-wrap items-center justify-center gap-2 lg:justify-start">
                   <span className="rounded-lg border border-katsu px-4 text-sm font-semibold dark:border-kami dark:text-kami lg:order-2 lg:text-base">
-                    {moment(post.createdAt).format("MMM DD, YYYY")}
+                    {moment(post.publishedAt).format("MMM DD, YYYY")}
                   </span>
                   <div className="lg:order-0 h-10">
                     <Image

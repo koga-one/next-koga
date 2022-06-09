@@ -2,14 +2,14 @@ import moment from "moment";
 import Image from "next/image";
 
 type Props = {
-  createdAt: string;
+  publishedAt: string;
   authorUrl: string;
   authorName: string;
   categoryName: string;
 };
 
 const PostHeader = ({
-  createdAt,
+  publishedAt,
   authorUrl,
   authorName,
   categoryName,
@@ -17,7 +17,7 @@ const PostHeader = ({
   return (
     <div className="mb-4 flex flex-wrap items-center justify-center gap-2 lg:mb-8 lg:justify-start">
       <span className="rounded-lg bg-katsu px-4 text-sm font-semibold text-kami dark:bg-gure dark:text-katsu lg:order-2 lg:text-base">
-        {moment(createdAt).format("MMM DD, YYYY")}
+        {moment(publishedAt).format("MMM DD, YYYY")}
       </span>
       <div className="lg:order-0 h-10">
         <Image

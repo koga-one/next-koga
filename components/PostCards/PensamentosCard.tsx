@@ -1,13 +1,11 @@
 import { TCardProps } from "../";
 
 const PensamentosCard = ({ post }: TCardProps) => {
-  const extra: { spotify: string } = JSON.parse(post.extra!);
-
   return (
     <div className="h-full bg-[#fff] dark:bg-[#000]">
       <iframe
         className="rounded-xl"
-        src={`https://open.spotify.com/embed/track/${extra.spotify}`}
+        src={`https://open.spotify.com/embed/track/${post.extra!}`}
         width="100%"
         height="80"
         frameBorder="0"

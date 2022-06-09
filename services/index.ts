@@ -30,7 +30,7 @@ export const getPosts = async () => {
 
   const query = gql`
     query MyQuery {
-      postsConnection(orderBy: createdAt_DESC) {
+      postsConnection(orderBy: publishedAt_DESC) {
         edges {
           node {
             author {
@@ -41,7 +41,7 @@ export const getPosts = async () => {
                 url
               }
             }
-            createdAt
+            publishedAt
             slug
             title
             excerpt
@@ -75,7 +75,7 @@ export const getRecentPosts = async () => {
   const query = gql`
     query GetPostDetails() {
       posts(
-        orderBy: createdAt_DESC
+        orderBy: publishedAt_DESC
         first: 1
       ) {
         category {
@@ -83,7 +83,7 @@ export const getRecentPosts = async () => {
           slug
         }
         excerpt
-        createdAt
+        publishedAt
         slug
         title
         extra
@@ -111,6 +111,7 @@ export const getSimilarPosts = async (category: string, slug: string) => {
     query GetPostDetails($slug: String!, $category: String!) {
       posts(
         where: { slug_not: $slug, AND: { category: { slug: $category } } }
+        orderBy: publishedAt_DESC
         first: 2
       ) {
         excerpt
@@ -123,7 +124,7 @@ export const getSimilarPosts = async (category: string, slug: string) => {
         featuredImage {
           url
         }
-        createdAt
+        publishedAt
         slug
       }
     }
@@ -203,7 +204,7 @@ export const getCategoryPost = async (slug: string) => {
                 url
               }
             }
-            createdAt
+            publishedAt
             slug
             title
             excerpt
@@ -234,7 +235,7 @@ export const getPostDetails = async (slug: string) => {
   type Wrapper = {
     post: {
       author: TAuthor;
-      createdAt: string;
+      publishedAt: string;
       slug: string;
       title: string;
       excerpt: string;
@@ -256,7 +257,7 @@ export const getPostDetails = async (slug: string) => {
             url
           }
         }
-        createdAt
+        publishedAt
         slug
         title
         excerpt
