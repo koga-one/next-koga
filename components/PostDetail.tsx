@@ -19,17 +19,16 @@ type Props = {
 
 const PostDetail = ({ post }: Props) => {
   return (
-    <div className="rounded-lg shadow-lg dark:bg-kami dark:bg-opacity-5">
+    <div className="rounded-xl shadow-lg dark:bg-kami dark:bg-opacity-5">
       <div className="overflow-hidden">
         <div className="relative h-[60vh] w-full overflow-hidden rounded-xl lg:h-[40vh]">
-          <div className="absolute right-1/2 h-full w-full translate-x-1/2">
-            <Image
-              className="card-image"
-              src={post.featuredImage.url}
-              quality={80}
-              layout={"fill"}
-            />
-          </div>
+          <Image
+            priority
+            className="card-image"
+            src={post.featuredImage.url}
+            quality={80}
+            layout={"fill"}
+          />
         </div>
       </div>
       <div className="py-8 px-4 lg:p-8">

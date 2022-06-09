@@ -2,7 +2,7 @@ import type { NextPage } from "next";
 import {
   PageWrapper,
   Categories,
-  PostWidget,
+  RecentPosts,
   TPost,
   PostGrid,
   Title,
@@ -26,7 +26,7 @@ const NotFound: NextPage<Props> = ({ posts }) => {
           </div>
           <div className="col-span-1 lg:col-span-4">
             <div className="relative lg:sticky lg:top-8">
-              <PostWidget />
+              <RecentPosts />
               <div className="mb-2 lg:mb-8"></div>
               <Categories />
             </div>

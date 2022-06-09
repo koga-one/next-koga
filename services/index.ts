@@ -240,7 +240,7 @@ export const getPostDetails = async (slug: string) => {
       excerpt: string;
       featuredImage: TUrl;
       category: TCategory;
-      extra: JSON;
+      extra: string;
       content: TContent;
     };
   };

@@ -4,7 +4,7 @@ import { RichText } from "@graphcms/rich-text-react-renderer";
 import {
   Categories,
   PageWrapper,
-  PostWidget,
+  RecentPosts,
   Title,
   TPage,
 } from "../components";
@@ -33,7 +33,7 @@ const PageDetails = ({ pageDetails }: Props) => {
           </div>
           <div className="col-span-1 lg:col-span-4">
             <div className="relative lg:sticky lg:top-8">
-              <PostWidget />
+              <RecentPosts />
               <div className="mb-2 lg:mb-8"></div>
               <Categories />
             </div>

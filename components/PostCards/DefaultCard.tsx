@@ -8,8 +8,6 @@ const DefaultCard = ({ post }: TCardProps) => {
         <Image
           className="card-image"
           src={post.featuredImage.url}
-          height={120}
-          width={120}
           quality={50}
           layout={"fill"}
         />

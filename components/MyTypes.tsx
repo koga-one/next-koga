@@ -1,4 +1,3 @@
-import { NodeRendererType } from "@graphcms/rich-text-react-renderer";
 import { RichTextContent } from "@graphcms/rich-text-types";
 
 export type TPost = {
@@ -8,7 +7,7 @@ export type TPost = {
   featuredImage: TUrl;
   imageLink?: string;
   author?: TAuthor;
-  extra?: JSON;
+  extra?: string;
   category?: TCategory;
   excerpt: string;
 };
