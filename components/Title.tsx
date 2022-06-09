@@ -18,16 +18,19 @@ const quotes: string[] = [
 
 const Title = ({ title, subtitle }: Props) => {
   const [quote, setQuote] = useState("");
-  useEffect(() => {
-    setQuote(
-      quotes[
-        Math.min(
-          Math.floor(Math.random() * quotes.length * 2),
-          quotes.length - 1
-        )
-      ]
-    );
-  }, []);
+
+  if (!title && !subtitle) {
+    useEffect(() => {
+      setQuote(
+        quotes[
+          Math.min(
+            Math.floor(Math.random() * quotes.length * 2),
+            quotes.length - 1
+          )
+        ]
+      );
+    }, []);
+  }
 
   return (
     <div className="mb-2 flex min-h-[40vh] flex-col items-center justify-center gap-4 lg:mb-8 lg:gap-8">
