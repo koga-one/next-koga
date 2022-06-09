@@ -1,8 +1,8 @@
 import React from "react";
 import { TAuthor, TUrl, TCategory, TContent } from "./";
 import moment from "moment";
-import { RichText } from "@graphcms/rich-text-react-renderer";
 import Image from "next/image";
+import PostArticle from "./PostDetails/PostArticle";
 
 type Props = {
   post: {
@@ -53,19 +53,7 @@ const PostDetail = ({ post }: Props) => {
             {post.category ? post.category.name : "No category"}
           </span>
         </div>
-        <article>
-          <h1 className="mb-6 text-center text-3xl font-semibold lg:mb-12 lg:text-left lg:text-6xl">
-            {post.title}
-          </h1>
-          <div className="rich-text">
-            <RichText
-              content={post.content.raw}
-              renderers={{
-                code_block: ({ children }) => <pre>{children}</pre>,
-              }}
-            />
-          </div>
-        </article>
+        <PostArticle raw={post.content.raw} title={post.title} />
       </div>
     </div>
   );
