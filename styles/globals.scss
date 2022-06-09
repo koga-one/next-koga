@@ -4,6 +4,15 @@
 
 @import url("https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;0,800;1,400;1,600;1,800&family=Fira+Code:wght@400;700&family=Inter:wght@100;400;600;900&display=swap");
 
+$kami: #f4f0f0;
+$gure: #9ba4ba;
+$katsu: #0f1024;
+$moku: #292723;
+$aka: #f43f5e;
+$ki: #eab308;
+$midori: #59c274;
+$aoi: #0b9bd0;
+
 html,
 body {
   padding: 0;
@@ -85,7 +94,7 @@ a {
     @apply marker:text-aka;
   }
   pre {
-    @apply whitespace-pre-line rounded bg-gure p-2 px-4 font-fira text-sm dark:bg-[#0C0C0C] lg:text-base;
+    @apply whitespace-pre-line rounded-lg bg-gure p-2 px-4 font-fira text-sm dark:bg-[#0C0C0C] lg:text-base;
   }
 }
 

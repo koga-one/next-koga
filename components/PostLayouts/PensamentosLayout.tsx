@@ -1,3 +1,4 @@
+import { RichText } from "@graphcms/rich-text-react-renderer";
 import {
   TAuthor,
   TCategory,
@@ -10,7 +11,7 @@ import {
   Categories,
   TUrl,
 } from "../";
-import { PostArticle, PostHeader, PostImage } from "../PostDetails";
+import { PostHeader } from "../PostDetails";
 
 type Props = {
   post: {
@@ -34,25 +35,37 @@ const PensamentosLayout = ({ post }: Props) => {
       <div className="container mx-auto">
         <div className="mx-2 grid min-h-screen grid-cols-1 gap-2 lg:grid-cols-12 lg:gap-8">
           <div className="col-span-1 lg:col-span-8">
-            <iframe
-              className="h-[50vh] rounded-xl lg:h-[40vh]"
-              src={`https://open.spotify.com/embed/track/${extra.spotify}`}
-              width="100%"
-              frameBorder="0"
-              allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-            ></iframe>
-            <div className="rounded-xl shadow-lg dark:bg-kami dark:bg-opacity-5">
-              <div className="overflow-hidden">
-                <PostImage featuredUrl={post.featuredImage.url} />
-              </div>
-              <div className="py-8 px-4 lg:p-8">
-                <PostHeader
-                  createdAt={post.createdAt}
-                  authorUrl={post.author.photo.url}
-                  authorName={post.author.name}
-                  categoryName={post.category.name}
-                />
-                <PostArticle raw={post.content.raw} title={post.title} />
+            <div className="rounded-xl border bg-[#fff] shadow-lg dark:bg-[#000]">
+              <iframe
+                className="h-[54vh] rounded-xl lg:h-[40vh]"
+                src={`https://open.spotify.com/embed/track/${extra.spotify}`}
+                width="100%"
+                frameBorder="0"
+                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+              ></iframe>
+              <div className="overflow-hidden py-8 px-4 lg:p-8">
+                <article>
+                  <h1 className="-m-16 mb-4 max-h-[8ch] overflow-hidden break-all text-center font-fira text-3xl font-semibold lg:mb-8 lg:text-left lg:text-6xl">
+                    {post.title} {post.title} {post.title} {post.title}{" "}
+                    {post.title} {post.title} {post.title} {post.title}{" "}
+                    {post.title} {post.title} {post.title} {post.title}{" "}
+                    {post.title} {post.title} {post.title} {post.title}{" "}
+                  </h1>
+                  <PostHeader
+                    createdAt={post.createdAt}
+                    authorUrl={post.author.photo.url}
+                    authorName={post.author.name}
+                    categoryName={post.category.name}
+                  />
+                  <div className="rich-text">
+                    <RichText
+                      content={post.content.raw}
+                      renderers={{
+                        code_block: ({ children }) => <pre>{children}</pre>,
+                      }}
+                    />
+                  </div>
+                </article>
               </div>
             </div>
             <Author author={post.author} />
