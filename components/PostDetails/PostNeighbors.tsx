@@ -18,23 +18,26 @@ const PostNeighbors = ({ createdAt }: Props) => {
   }, [createdAt]);
 
   return (
-    <div className="grid grid-cols-2 gap-x-2">
+    <div className="flex flex-row gap-x-2">
       {previousPost && (
-        <Link href={`/post/${previousPost.slug}`}>
-          <a className="max-w-full place-self-start overflow-hidden text-ellipsis whitespace-nowrap rounded-lg border px-4 font-semibold text-katsu dark:border-gure dark:font-normal dark:text-kami">
-            <span className="font-fira">{"<- "}</span>
-            {previousPost.title}
-          </a>
-        </Link>
+        <div className="mr-auto rounded-lg border font-semibold dark:border-kami dark:font-normal dark:text-kami">
+          <Link href={`/post/${previousPost.slug}`}>
+            <a className="flex flex-row px-2">
+              <p className="w-7 whitespace-nowrap font-fira">{"<- "}</p>
+              <p>{previousPost.title}</p>
+            </a>
+          </Link>
+        </div>
       )}
-      {!previousPost && <div></div>}
       {nextPost && (
-        <Link href={`/post/${nextPost.slug}`}>
-          <a className="max-w-full place-self-end overflow-hidden text-ellipsis whitespace-nowrap rounded-lg border px-4 text-right font-semibold text-katsu dark:border-gure dark:font-normal dark:text-kami">
-            {nextPost.title}
-            <span className="font-fira">{" ->"}</span>
-          </a>
-        </Link>
+        <div className="ml-auto rounded-lg border font-semibold dark:border-kami dark:font-normal dark:text-kami">
+          <Link href={`/post/${nextPost.slug}`}>
+            <a className="flex flex-row px-2">
+              <p>{nextPost.title}</p>
+              <p className="w-7 whitespace-nowrap font-fira">{" ->"}</p>
+            </a>
+          </Link>
+        </div>
       )}
     </div>
   );
