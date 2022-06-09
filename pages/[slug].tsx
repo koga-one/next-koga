@@ -19,7 +19,7 @@ const PageDetails: NextPage<Props> = ({ pageDetails }) => {
   const [raw, setRaw] = useState<RichTextContent>([]);
   useEffect(() => {
     setRaw(pageDetails.content!.raw);
-  }, []);
+  }, [pageDetails.title]);
 
   return (
     <PageWrapper title={pageDetails.title}>

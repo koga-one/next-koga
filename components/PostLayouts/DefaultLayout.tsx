@@ -1,5 +1,3 @@
-import { RichTextContent } from "@graphcms/rich-text-types";
-import { useEffect, useState } from "react";
 import {
   TAuthor,
   TCategory,
@@ -28,11 +26,6 @@ type Props = {
 };
 
 const DefaultLayout = ({ post }: Props) => {
-  const [raw, setRaw] = useState<RichTextContent>([]);
-  useEffect(() => {
-    setRaw(post.content.raw);
-  }, []);
-
   return (
     <PageWrapper title={post.title}>
       <div className="container mx-auto">
@@ -49,7 +42,7 @@ const DefaultLayout = ({ post }: Props) => {
                   authorName={post.author.name}
                   categoryName={post.category.name}
                 />
-                <PostArticle raw={raw} title={post.title} />
+                <PostArticle raw={post.content.raw} title={post.title} />
               </div>
             </div>
             <Author author={post.author} />

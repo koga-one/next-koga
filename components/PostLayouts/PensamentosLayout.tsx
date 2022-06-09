@@ -1,6 +1,4 @@
 import { RichText } from "@graphcms/rich-text-react-renderer";
-import { RichTextContent } from "@graphcms/rich-text-types";
-import { useEffect, useState } from "react";
 import {
   TAuthor,
   TCategory,
@@ -30,10 +28,6 @@ type Props = {
 };
 
 const PensamentosLayout = ({ post }: Props) => {
-  const [raw, setRaw] = useState<RichTextContent>([]);
-  useEffect(() => {
-    setRaw(post.content.raw);
-  }, []);
   const extra: { spotify: string } = JSON.parse(post.extra!);
 
   return (
@@ -65,7 +59,7 @@ const PensamentosLayout = ({ post }: Props) => {
                   />
                   <div className="rich-text">
                     <RichText
-                      content={raw}
+                      content={post.content.raw}
                       renderers={{
                         code_block: ({ children }) => <pre>{children}</pre>,
                       }}
