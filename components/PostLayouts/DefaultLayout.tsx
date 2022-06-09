@@ -3,7 +3,6 @@ import {
   TCategory,
   TContent,
   PageWrapper,
-  PostDetail,
   Author,
   CommentsForm,
   Comments,
@@ -11,6 +10,7 @@ import {
   Categories,
   TUrl,
 } from "../";
+import { PostArticle, PostHeader, PostImage } from "../PostDetails";
 
 type Props = {
   post: {
@@ -31,7 +31,20 @@ const DefaultLayout = ({ post }: Props) => {
       <div className="container mx-auto">
         <div className="mx-2 grid min-h-screen grid-cols-1 gap-2 lg:grid-cols-12 lg:gap-8">
           <div className="col-span-1 lg:col-span-8">
-            <PostDetail post={post} />
+            <div className="rounded-xl shadow-lg dark:bg-kami dark:bg-opacity-5">
+              <div className="overflow-hidden">
+                <PostImage featuredUrl={post.featuredImage.url} />
+              </div>
+              <div className="py-8 px-4 lg:p-8">
+                <PostHeader
+                  createdAt={post.createdAt}
+                  authorUrl={post.author.photo.url}
+                  authorName={post.author.name}
+                  categoryName={post.category.name}
+                />
+                <PostArticle raw={post.content.raw} title={post.title} />
+              </div>
+            </div>
             <Author author={post.author} />
             <CommentsForm slug={post.slug} />
             <Comments slug={post.slug} />
