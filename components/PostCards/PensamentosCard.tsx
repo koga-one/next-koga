@@ -4,7 +4,7 @@ const PensamentosCard = ({ post }: TCardProps) => {
   return (
     <div className="h-full bg-[#fff] dark:bg-[#000]">
       <iframe
-        className="rounded-xl"
+        className="rounded-lg"
         src={`https://open.spotify.com/embed/track/${post.extra!}`}
         width="100%"
         height="80"

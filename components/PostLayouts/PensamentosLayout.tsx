@@ -1,6 +1,7 @@
 import { RichText } from "@graphcms/rich-text-react-renderer";
 import moment from "moment";
 import Image from "next/image";
+import Link from "next/link";
 import {
   TAuthor,
   TCategory,
@@ -56,6 +57,14 @@ const PensamentosLayout = ({ post }: Props) => {
                     {post.title} {post.title} {post.title} {post.title}{" "}
                     {post.title} {post.title} {post.title} {post.title}{" "}
                   </h1>
+                  <div className="mb-8">
+                    <p className="text-right text-xs">
+                      confused? check the original post{" "}
+                      <Link href="/post/opa-os-meus-pensamentos-escaparam">
+                        <a className="underline">here</a>
+                      </Link>
+                    </p>
+                  </div>
                   <div className="rich-text">
                     <RichText
                       content={post.content.raw}
@@ -65,8 +74,8 @@ const PensamentosLayout = ({ post }: Props) => {
                     />
                   </div>
                 </article>
-                <div className="flex flex-wrap items-center justify-center gap-2 lg:justify-start">
-                  <span className="rounded-lg border border-katsu px-4 text-sm font-semibold dark:border-kami dark:text-kami lg:order-2 lg:text-base">
+                <div className="mt-8 flex flex-wrap items-center justify-center gap-2 lg:justify-start">
+                  <span className="rounded-lg bg-gure px-4 text-sm font-semibold text-katsu lg:order-2 lg:text-base">
                     {moment(post.createdAt).format("MMM DD, YYYY")}
                   </span>
                   <div className="lg:order-0 h-10">
@@ -79,12 +88,16 @@ const PensamentosLayout = ({ post }: Props) => {
                       layout="fixed"
                     />
                   </div>
-                  <span className="hidden rounded-lg border border-katsu px-4 text-sm font-semibold dark:border-kami dark:text-kami lg:order-1 lg:inline lg:text-base">
+                  <span className="hidden rounded-lg bg-gure px-4 text-sm font-semibold text-katsu lg:order-1 lg:inline lg:text-base">
                     {post.author.name}
                   </span>
-                  <span className="rounded-lg border border-katsu px-4 text-sm font-semibold dark:border-kami dark:text-kami lg:order-4 lg:text-base">
-                    {post.category.name}
-                  </span>
+                  <Link href={post.category.slug}>
+                    <a className="lg:order-4">
+                      <span className="rounded-lg border border-katsu px-4 text-sm font-semibold dark:border-kami dark:text-kami lg:text-base">
+                        {post.category.name}
+                      </span>
+                    </a>
+                  </Link>
                 </div>
               </div>
             </div>

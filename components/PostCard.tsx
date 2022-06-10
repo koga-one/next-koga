@@ -16,29 +16,29 @@ const PostCard = ({ post }: Props) => {
   );
 
   return (
-    <Link href={`/post/${post.slug}`}>
-      <a>
-        <div className="flex h-full w-full flex-col">
-          <div className="flex gap-2">
-            <p
-              className={`rounded-lg px-4 text-sm font-semibold text-kami dark:text-katsu ${
-                post.category?.name !== "Default"
-                  ? "bg-katsu dark:bg-kami"
-                  : "bg-gure"
-              }`}
-            >
-              {post.category ? post.category.name : "Default"}
-            </p>
-            <p className="rounded-lg bg-gure px-4 text-sm font-semibold text-kami dark:bg-gure dark:text-katsu">
-              {moment(post.createdAt).format("MMM DD, YYYY")}
-            </p>
-          </div>
+    <div className="flex h-full w-full flex-col">
+      <div className="flex gap-2">
+        {post.category && (
+          <Link href={`/category/${post.category.slug}`}>
+            <a>
+              <p className="rounded-lg border border-katsu px-4 text-sm font-semibold text-katsu dark:border-kami dark:bg-katsu dark:text-kami">
+                {post.category.name}
+              </p>
+            </a>
+          </Link>
+        )}
+        <p className="rounded-lg bg-gure px-4 text-sm font-semibold text-katsu dark:bg-gure">
+          {moment(post.createdAt).format("MMM DD, YYYY")}
+        </p>
+      </div>
+      <Link href={`/post/${post.slug}`}>
+        <a>
           <div className="mt-2 min-h-[178px] overflow-hidden rounded-xl border dark:border-gure dark:bg-katsu">
             <Card post={post} />
           </div>
-        </div>
-      </a>
-    </Link>
+        </a>
+      </Link>
+    </div>
   );
 };
 
