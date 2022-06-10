@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 
 type Props = {
   title?: string;
@@ -10,7 +10,7 @@ const quotes: string[] = [
   "you can install this website!",
   "dark mode included for the gamers",
   "i try to post daily (or weekly)",
-  "おはようございます！",
+  "どうぞよろしく！",
   "nice to meet you. I'm koga!",
   "bem vindo ao meu site. welcome!",
   "the moon is beautiful, isn't it?",

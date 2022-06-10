@@ -8,13 +8,11 @@ type Props = {
 
 const CommentsForm = ({ slug }: Props) => {
   const [error, setError] = useState(false);
-  const [localStorage, setLocalStorage] = useState(null);
   const [showSuccessMessage, setShowSuccessMessage] = useState(false);
   const commentEl: RefObject<HTMLTextAreaElement> = createRef();
   const nameEl: RefObject<HTMLInputElement> = createRef();
   const emailEl: RefObject<HTMLInputElement> = createRef();
   const storeDataEl: RefObject<HTMLInputElement> = createRef();
-  let comment = "";
 
   useEffect(() => {
     const name: string | null = window.localStorage.getItem("name");

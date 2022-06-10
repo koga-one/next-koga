@@ -12,6 +12,7 @@ import {
 const graphqlAPI = process.env.NEXT_PUBLIC_GRAPHCMS_ENDPOINT;
 const unsplashAPI = process.env.NEXT_PUBLIC_UNSPLASH_ENDPOINT;
 const unsplashAccessKey = process.env.NEXT_PUBLIC_UNSPLASH_ACCESS_KEY;
+export const postsPerPage = 3;
 
 export const getImage = async (id: string) => {
   const result = await fetch(
@@ -21,7 +22,7 @@ export const getImage = async (id: string) => {
   return result.json();
 };
 
-export const getPosts = async () => {
+export const getAllPosts = async () => {
   type Wrapper = {
     postsConnection: {
       edges: { node: TPost }[];
@@ -29,8 +30,10 @@ export const getPosts = async () => {
   };
 
   const query = gql`
-    query MyQuery {
-      postsConnection(orderBy: createdAt_DESC) {
+    query MyQuery() {
+      postsConnection(
+        orderBy: createdAt_DESC
+      ) {
         edges {
           node {
             author {
@@ -65,6 +68,86 @@ export const getPosts = async () => {
   );
 
   return result.postsConnection.edges;
+};
+
+export const getPosts = async (index: number) => {
+  type Wrapper = {
+    postsConnection: {
+      edges: { node: TPost }[];
+    };
+  };
+
+  const query = gql`
+    query MyQuery($skip: Int!, $postsPerPage: Int!) {
+      postsConnection(
+        orderBy: createdAt_DESC
+        skip: $skip
+        first: $postsPerPage
+      ) {
+        edges {
+          node {
+            author {
+              bio
+              name
+              id
+              photo {
+                url
+              }
+            }
+            createdAt
+            slug
+            title
+            excerpt
+            extra
+            featuredImage {
+              url
+            }
+            category {
+              name
+              slug
+            }
+          }
+        }
+      }
+    }
+  `;
+
+  const skip = postsPerPage * index;
+
+  const result: Wrapper = await request(
+    typeof graphqlAPI === "string" ? graphqlAPI : "",
+    query,
+    { skip, postsPerPage }
+  );
+
+  return result.postsConnection.edges;
+};
+
+export const amountOfPosts = async () => {
+  type Wrapper = {
+    postsConnection: {
+      edges: { node: TPost }[];
+    };
+  };
+
+  const query = gql`
+    query HasNext {
+      postsConnection {
+        edges {
+          node {
+            id
+          }
+        }
+      }
+    }
+  `;
+
+  const result: Wrapper = await request(
+    typeof graphqlAPI === "string" ? graphqlAPI : "",
+    query
+  );
+
+  return result.postsConnection.edges.length;
 };
 
 export const getFeaturedPosts = async () => {
@@ -217,6 +300,7 @@ export const getCategoryData = async (slug: string) => {
       category(where: { slug: $slug }) {
         subtitle
         name
+        slug
       }
     }
   `;
@@ -230,7 +314,7 @@ export const getCategoryData = async (slug: string) => {
   return result.category;
 };
 
-export const getCategoryPost = async (slug: string) => {
+export const amountOfCategoryPosts = async (slug: string) => {
   type Wrapper = {
     postsConnection: {
       edges: { node: TPost }[];
@@ -238,8 +322,41 @@ export const getCategoryPost = async (slug: string) => {
   };
 
   const query = gql`
-    query GetCategoryPost($slug: String!) {
+    query HasNext($slug: String!) {
       postsConnection(where: { category: { slug: $slug } }) {
+        edges {
+          node {
+            id
+          }
+        }
+      }
+    }
+  `;
+
+  const result: Wrapper = await request(
+    typeof graphqlAPI === "string" ? graphqlAPI : "",
+    query,
+    { slug }
+  );
+
+  return result.postsConnection.edges.length;
+};
+
+export const getCategoryPost = async (slug: string, index: number) => {
+  type Wrapper = {
+    postsConnection: {
+      edges: { node: TPost }[];
+    };
+  };
+
+  const query = gql`
+    query GetCategoryPost($slug: String!, $skip: Int!, $postsPerPage: Int!) {
+      postsConnection(
+        where: { category: { slug: $slug } }
+        skip: $skip
+        first: $postsPerPage
+        orderBy: createdAt_DESC
+      ) {
         edges {
           node {
             author {
@@ -267,10 +384,12 @@ export const getCategoryPost = async (slug: string) => {
     }
   `;
 
+  const skip = postsPerPage * index;
+
   const result: Wrapper = await request(
     typeof graphqlAPI === "string" ? graphqlAPI : "",
     query,
-    { slug }
+    { slug, skip, postsPerPage }
   );
 
   return result.postsConnection.edges;

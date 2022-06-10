@@ -1,10 +1,6 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import {
-  getCategories,
-  getCategoryData,
-  getCategoryPost,
-} from "../../services";
+import { getCategories, getCategoryData } from "../../services";
 import {
   Categories,
   TPost,
@@ -13,39 +9,44 @@ import {
   RecentPosts,
   Title,
   TCategory,
+  Loading,
+  CategoryPostGrid,
 } from "../../components";
+import NotFound from "../404";
 
 type Props = {
-  posts: { node: TPost }[];
-  categoryData: TCategory;
+  categoryData?: TCategory;
 };
 
-const CategoryPost = ({ posts, categoryData }: Props) => {
+const CategoryPost = ({ categoryData }: Props) => {
   const router = useRouter();
 
   if (router.isFallback) {
-    return <div>Loader</div>;
+    return <Loading />;
   }
 
-  return (
-    <PageWrapper title={categoryData.name}>
-      <div className="container mx-auto">
-        <Title title={categoryData.name} subtitle={categoryData.subtitle} />
-        <div className="mx-2 grid min-h-screen grid-cols-1 gap-2 lg:grid-cols-12 lg:gap-8">
-          <div className="col-span-1 lg:col-span-8">
-            <PostGrid posts={posts} title={categoryData.name} />
-          </div>
-          <div className="col-span-1 lg:col-span-4">
-            <div className="relative lg:sticky lg:top-8">
-              <RecentPosts />
-              <div className="mb-2 lg:mb-8"></div>
-              <Categories />
+  if (categoryData?.slug) {
+    return (
+      <PageWrapper title={categoryData.name}>
+        <div className="container mx-auto">
+          <Title title={categoryData.name} subtitle={categoryData.subtitle} />
+          <div className="mx-2 grid min-h-screen grid-cols-1 gap-2 lg:grid-cols-12 lg:gap-8">
+            <div className="col-span-1 lg:col-span-8">
+              <CategoryPostGrid slug={categoryData.slug} />
+            </div>
+            <div className="col-span-1 lg:col-span-4">
+              <div className="relative lg:sticky lg:top-8">
+                <RecentPosts />
+                <div className="mb-2 lg:mb-8"></div>
+                <Categories />
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </PageWrapper>
-  );
+      </PageWrapper>
+    );
+  }
+  return <NotFound />;
 };
 export default CategoryPost;
 
@@ -57,17 +58,14 @@ type StaticProps = {
 
 // Fetch data at build time
 export async function getStaticProps({ params }: StaticProps) {
-  const posts = await getCategoryPost(params.slug);
   const categoryData = await getCategoryData(params.slug);
 
   return {
-    props: { posts, categoryData },
+    props: { categoryData },
     revalidate: 10,
   };
 }
 
-// Specify dynamic routes to pre-render pages based on data.
-// The HTML is generated at build time and will be reused on each request.
 export async function getStaticPaths() {
   const categories = await getCategories();
   return {

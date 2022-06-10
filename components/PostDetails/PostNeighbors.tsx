@@ -29,14 +29,30 @@ const PostNeighbors = ({ createdAt }: Props) => {
           </Link>
         </div>
       )}
+      {!previousPost && (
+        <div className="mr-auto rounded-lg border border-aka font-semibold text-aka dark:font-normal">
+          <a className="flex flex-row px-2">
+            <p className="whitespace-nowrap font-fira">{"<-"}</p>
+          </a>
+        </div>
+      )}
       {nextPost && (
         <div className="ml-auto rounded-lg border font-semibold dark:border-kami dark:font-normal dark:text-kami">
           <Link href={`/post/${nextPost.slug}`}>
             <a className="flex flex-row px-2">
               <p>{nextPost.title}</p>
-              <p className="w-7 whitespace-nowrap font-fira">{" ->"}</p>
+              <p className="w-7 whitespace-nowrap text-right font-fira">
+                {" ->"}
+              </p>
             </a>
           </Link>
+        </div>
+      )}
+      {!nextPost && (
+        <div className="ml-auto rounded-lg border border-aka font-semibold text-aka dark:font-normal">
+          <a className="flex flex-row px-2">
+            <p className="whitespace-nowrap font-fira">{"->"}</p>
+          </a>
         </div>
       )}
     </div>

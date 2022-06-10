@@ -15,13 +15,15 @@ const RecentPosts = () => {
   }, []);
 
   return (
-    <Widget title={"Featured Posts"}>
-      <div className="grid grow gap-4">
-        {featuredPosts.map((post) => (
-          <PostCard post={post.node} key={post.node.slug}></PostCard>
-        ))}
-      </div>
-    </Widget>
+    <div className="rounded-xl border border-katsu dark:border-kami">
+      <Widget title={"Featured Posts"}>
+        <div className="grid grow gap-4">
+          {featuredPosts.map((post) => (
+            <PostCard post={post.node} key={post.node.slug}></PostCard>
+          ))}
+        </div>
+      </Widget>
+    </div>
   );
 };
 

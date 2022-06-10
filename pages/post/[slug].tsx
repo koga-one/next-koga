@@ -1,8 +1,9 @@
 import React from "react";
-import { getPosts, getPostDetails } from "../../services";
-import { TContent, TAuthor, TCategory, TUrl } from "../../components";
-import { NextPage } from "next";
+import { getPostDetails, getAllPosts } from "../../services";
+import { TContent, TAuthor, TCategory, TUrl, Loading } from "../../components";
 import loadable from "@loadable/component";
+import { useRouter } from "next/router";
+import NotFound from "../404";
 
 type Props = {
   post: {
@@ -17,19 +18,28 @@ type Props = {
   };
 };
 
-const PostDetails: NextPage<Props> = ({ post }) => {
-  const Post = loadable(() =>
-    post.category
-      ? import(
-          `../../components/PostLayouts/${post.category.name.replace(
-            /\s/g,
-            ""
-          )}Layout`
-        )
-      : import("../../components/PostLayouts/DefaultLayout")
-  );
+const PostDetails = ({ post }: Props) => {
+  const router = useRouter();
 
-  return <Post post={post} />;
+  if (router.isFallback) {
+    return <Loading />;
+  }
+
+  if (post.title) {
+    const Post = loadable(() =>
+      post.category
+        ? import(
+            `../../components/PostLayouts/${post.category.name.replace(
+              /\s/g,
+              ""
+            )}Layout`
+          )
+        : import("../../components/PostLayouts/DefaultLayout")
+    );
+    return <Post post={post} />;
+  } else {
+    return <NotFound />;
+  }
 };
 
 export default PostDetails;
@@ -50,10 +60,10 @@ export async function getStaticProps({ params }: StaticProps) {
 }
 
 export async function getStaticPaths() {
-  const posts = await getPosts();
+  const posts = await getAllPosts();
 
   return {
     paths: posts.map(({ node: { slug } }) => ({ params: { slug } })),
-    fallback: false,
+    fallback: true,
   };
 }

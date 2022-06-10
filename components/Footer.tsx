@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { getPages } from "../services";
 import { TPage } from "./MyTypes";
 
@@ -36,4 +36,4 @@ const Footer = () => {
   );
 };
 
-export default Footer;
+export default React.memo(Footer);

@@ -4,7 +4,7 @@ import Image from "next/image";
 const DefaultCard = ({ post }: TCardProps) => {
   return (
     <div className="h-full">
-      <div className="relative min-h-[120px] w-full overflow-hidden rounded-xl lg:min-h-[80px]">
+      <div className="relative w-full overflow-hidden rounded-xl lg:min-h-[80px]">
         <Image
           className="card-image"
           src={post.featuredImage.url}

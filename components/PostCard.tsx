@@ -33,7 +33,7 @@ const PostCard = ({ post }: Props) => {
               {moment(post.createdAt).format("MMM DD, YYYY")}
             </p>
           </div>
-          <div className="mt-2 h-full overflow-hidden rounded-xl border dark:bg-katsu">
+          <div className="mt-2 min-h-[178px] overflow-hidden rounded-xl border dark:border-gure dark:bg-katsu">
             <Card post={post} />
           </div>
         </div>
@@ -42,4 +42,4 @@ const PostCard = ({ post }: Props) => {
   );
 };
 
-export default PostCard;
+export default React.memo(PostCard);

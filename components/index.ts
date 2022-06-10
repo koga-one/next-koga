@@ -11,9 +11,11 @@ export { default as Comments } from "./Comments";
 export { default as PageWrapper } from "./PageWrapper";
 export { default as Footer } from "./Footer";
 export { default as PostGrid } from "./PostGrid";
+export { default as CategoryPostGrid } from "./CategoryPostGrid";
 export { default as Header } from "./Header";
 export { default as Widget } from "./Widget";
 export { default as Title } from "./Title";
+export { default as Loading } from "./Loading";
 export type {
   TPost,
   TAuthor,
