@@ -48,7 +48,7 @@ const PensamentosLayout = ({ post }: Props) => {
               ></iframe>
               <div className="overflow-hidden py-8 px-4 lg:p-8">
                 <article>
-                  <h1 className="-m-16 mb-4 max-h-[12ch] overflow-hidden break-all text-center font-fira text-4xl font-semibold lg:mb-8 lg:max-h-[9ch] lg:text-left lg:text-6xl">
+                  <h1 className="-m-16 mb-8 max-h-[12ch] overflow-hidden break-all text-center font-fira text-4xl font-semibold lg:mb-12 lg:max-h-[9ch] lg:text-left lg:text-6xl">
                     {post.title} {post.title} {post.title} {post.title}{" "}
                     {post.title} {post.title} {post.title} {post.title}{" "}
                     {post.title} {post.title} {post.title} {post.title}{" "}
