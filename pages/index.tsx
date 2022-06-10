@@ -1,5 +1,4 @@
 import { NextPage } from "next";
-import { useEffect, useState } from "react";
 import {
   PageWrapper,
   Categories,
@@ -8,7 +7,6 @@ import {
   FeaturedPosts,
   TPost,
 } from "../components";
-import { getPosts, amountOfPosts } from "../services";
 
 const Home: NextPage = () => {
   return (
@@ -20,7 +18,7 @@ const Home: NextPage = () => {
             <FeaturedPosts />
           </div>
           <div className="col-span-1 lg:col-span-8">
-            <PostGrid />
+            <PostGrid title="Posts" />
           </div>
           <div className="col-span-1 lg:col-span-4">
             <div className="relative lg:sticky lg:top-8">

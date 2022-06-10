@@ -22,7 +22,7 @@ const NotFound: NextPage = () => {
         <Title title="404" subtitle="huh, this page doesn't exist" />
         <div className="mx-2 grid min-h-screen grid-cols-1 gap-2 lg:grid-cols-12 lg:gap-8">
           <div className="col-span-1 lg:col-span-8">
-            <PostGrid posts={posts} title="Recent Posts" />
+            <PostGrid title="Recent Posts" />
           </div>
           <div className="col-span-1 lg:col-span-4">
             <div className="relative lg:sticky lg:top-8">
