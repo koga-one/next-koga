@@ -3,6 +3,7 @@ import { getPostDetails, getAllPosts } from "../../services";
 import { TContent, TAuthor, TCategory, TUrl, Loading } from "../../components";
 import loadable from "@loadable/component";
 import { useRouter } from "next/router";
+import { NextPage } from "next";
 
 type Props = {
   post: {
@@ -17,7 +18,7 @@ type Props = {
   };
 };
 
-const PostDetails = ({ post }: Props) => {
+const PostDetails: NextPage<Props> = ({ post }) => {
   const router = useRouter();
 
   if (router.isFallback) {

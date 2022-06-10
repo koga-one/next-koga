@@ -5,7 +5,6 @@ import {
   PostGrid,
   Title,
   FeaturedPosts,
-  TPost,
 } from "../components";
 
 const Home: NextPage = () => {

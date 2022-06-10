@@ -1,21 +1,13 @@
 import type { NextPage } from "next";
-import { useEffect, useState } from "react";
 import {
   PageWrapper,
   Categories,
   RecentPosts,
-  TPost,
   PostGrid,
   Title,
 } from "../components";
-import { getPosts } from "../services";
 
 const NotFound: NextPage = () => {
-  const [posts, setposts] = useState<{ node: TPost }[]>([]);
-  useEffect(() => {
-    getPosts(0).then((result) => setposts(result));
-  }, []);
-
   return (
     <PageWrapper title="404">
       <div className="container mx-auto">

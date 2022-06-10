@@ -10,12 +10,13 @@ import {
   Loading,
   CategoryPostGrid,
 } from "../../components";
+import { NextPage } from "next";
 
 type Props = {
   categoryData: TCategory;
 };
 
-const CategoryPost = ({ categoryData }: Props) => {
+const CategoryPost: NextPage<Props> = ({ categoryData }) => {
   const router = useRouter();
 
   if (router.isFallback) {
