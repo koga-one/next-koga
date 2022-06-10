@@ -91,7 +91,7 @@ const PostGrid = ({ slug }: Props) => {
           <input
             ref={pageEl}
             type="text"
-            className="w-[40px] rounded-md bg-kami text-center font-semibold text-aka placeholder:font-semibold placeholder:text-katsu focus:ring-4 focus:ring-aka focus:ring-opacity-40 dark:bg-katsu dark:bg-opacity-90 dark:placeholder:text-kami"
+            className="w-[40px] rounded-md bg-kami text-center font-semibold text-aka outline-none placeholder:font-semibold placeholder:text-katsu focus:ring-2 focus:ring-kami dark:bg-katsu dark:bg-opacity-90 dark:placeholder:text-kami"
             placeholder={(index + 1).toString()}
             name="page"
             onKeyDown={handleKeyDown}
