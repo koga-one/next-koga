@@ -12,7 +12,7 @@ import {
 const graphqlAPI = process.env.NEXT_PUBLIC_GRAPHCMS_ENDPOINT;
 const unsplashAPI = process.env.NEXT_PUBLIC_UNSPLASH_ENDPOINT;
 const unsplashAccessKey = process.env.NEXT_PUBLIC_UNSPLASH_ACCESS_KEY;
-export const postsPerPage = 3;
+export const postsPerPage = 8;
 
 export const getImage = async (id: string) => {
   const result = await fetch(
