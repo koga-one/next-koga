@@ -91,7 +91,7 @@ const PensamentosLayout = ({ post }: Props) => {
                   <span className="hidden rounded-lg bg-gure px-4 text-sm font-semibold text-katsu lg:order-1 lg:inline lg:text-base">
                     {post.author.name}
                   </span>
-                  <Link href={post.category.slug}>
+                  <Link href={`/category/${post.category.slug}`}>
                     <a className="lg:order-4">
                       <span className="rounded-lg border border-katsu px-4 text-sm font-semibold dark:border-kami dark:text-kami lg:text-base">
                         {post.category.name}
