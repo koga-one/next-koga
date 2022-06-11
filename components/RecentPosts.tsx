@@ -11,7 +11,7 @@ const RecentPosts = () => {
   }, []);
 
   return (
-    <Widget title={"Latest Post"}>
+    <Widget title={"Latest Posts"}>
       <div className="grid grow gap-4">
         {relatedPosts.map((post) => (
           <PostCard post={post} key={post.slug}></PostCard>

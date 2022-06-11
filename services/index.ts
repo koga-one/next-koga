@@ -205,7 +205,7 @@ export const getRecentPosts = async () => {
     query GetPostDetails() {
       posts(
         orderBy: createdAt_DESC
-        first: 1
+        first: 2
       ) {
         category {
           name
