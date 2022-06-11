@@ -12,7 +12,7 @@ const PensamentosCard = ({ post }: TCardProps) => {
         allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
       ></iframe>
       <div className="max-h-24 overflow-hidden">
-        <h2 className="-mx-8 -my-2 self-center break-all font-fira text-lg lg:text-xl">
+        <h2 className="text-md -mx-8 -my-2 self-center break-all font-fira lg:text-xl">
           {post.title} {post.title} {post.title} {post.title} {post.title}{" "}
           {post.title} {post.title} {post.title} {post.title} {post.title}{" "}
           {post.title} {post.title} {post.title} {post.title} {post.title}{" "}
