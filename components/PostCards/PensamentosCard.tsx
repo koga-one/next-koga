@@ -18,6 +18,9 @@ const PensamentosCard = ({ post }: TCardProps) => {
           {post.title} {post.title} {post.title} {post.title} {post.title}{" "}
           {post.title} {post.title} {post.title} {post.title} {post.title}{" "}
           {post.title} {post.title} {post.title} {post.title} {post.title}{" "}
+          {post.title} {post.title} {post.title} {post.title} {post.title}{" "}
+          {post.title} {post.title} {post.title} {post.title} {post.title}{" "}
+          {post.title} {post.title} {post.title} {post.title} {post.title}{" "}
         </h2>
       </div>
     </div>

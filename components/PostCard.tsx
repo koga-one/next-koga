@@ -32,9 +32,14 @@ const PostCard = ({ post }: Props) => {
         </p>
       </div>
       <Link href={`/post/${post.slug}`}>
-        <a>
+        <a className="relative">
           <div className="mt-2 min-h-[178px] overflow-hidden rounded-xl border dark:border-gure dark:bg-katsu">
             <Card post={post} />
+          </div>
+          <div className="absolute right-2 bottom-2 z-50 rounded-lg border border-katsu bg-kami">
+            <p className="px-2 text-sm text-katsu">
+              Read Post <span className="font-fira">{"->"}</span>
+            </p>
           </div>
         </a>
       </Link>
