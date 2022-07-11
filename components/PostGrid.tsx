@@ -147,6 +147,92 @@ const PostGrid = ({ title }: Props) => {
           <PostCard post={post.node} key={post.node.slug}></PostCard>
         ))}
       </div>
+      <div className="mt-8 grid w-full grid-cols-1 gap-x-2 lg:hidden lg:grid-cols-3">
+        <div className="mr-auto hidden gap-2 lg:flex">
+          <button
+            type="button"
+            disabled={index <= 0}
+            onClick={() => changePage(0)}
+            className="rounded-lg border font-semibold disabled:border-aka disabled:text-aka dark:border-kami dark:font-normal dark:text-kami"
+          >
+            <a className="px-2">
+              <span className="w-7 whitespace-nowrap font-fira">{"<<- "}</span>
+              <span>First</span>
+            </a>
+          </button>
+          <button
+            type="button"
+            disabled={index <= 0}
+            onClick={() => changePage(index - 1)}
+            className="rounded-lg border font-semibold disabled:border-aka disabled:text-aka dark:border-kami dark:font-normal dark:text-kami"
+          >
+            <a className="px-2">
+              <span className="w-7 whitespace-nowrap font-fira">{"<- "}</span>
+              <span>Previous</span>
+            </a>
+          </button>
+        </div>
+        <div className="mx-auto flex gap-2">
+          <button
+            type="button"
+            disabled={index <= 0}
+            onClick={() => changePage(index - 1)}
+            className="rounded-lg border font-semibold disabled:border-aka disabled:text-aka dark:border-kami dark:font-normal dark:text-kami lg:hidden"
+          >
+            <a className="px-2">
+              <span className="whitespace-nowrap font-fira">{"<-"}</span>
+            </a>
+          </button>
+          <div className="rounded-lg bg-gure py-1 px-2">
+            <span className="font-semibold text-katsu">Page</span>
+            <input
+              ref={pageEl}
+              type="text"
+              className="mx-1 w-[40px] rounded-md bg-kami text-center font-semibold text-aka outline-none placeholder:font-semibold placeholder:text-katsu focus:ring-2 focus:ring-kami dark:bg-katsu dark:bg-opacity-90 dark:placeholder:text-kami"
+              placeholder={(index + 1).toString()}
+              name="page"
+              onKeyDown={handleKeyDown}
+            />
+            <span className="font-semibold text-katsu">
+              out of {postNumbers.maxIndex + 1}
+            </span>
+          </div>
+          <button
+            type="button"
+            disabled={postsPerPage * index + postsPerPage >= postNumbers.amount}
+            onClick={() => changePage(index + 1)}
+            className="rounded-lg border font-semibold disabled:border-aka disabled:text-aka dark:border-kami dark:font-normal dark:text-kami lg:hidden"
+          >
+            <a className="px-2">
+              <span className="whitespace-nowrap font-fira">{"->"}</span>
+            </a>
+          </button>
+        </div>
+        <div className="ml-auto hidden gap-2 lg:flex">
+          <button
+            type="button"
+            disabled={postsPerPage * index + postsPerPage >= postNumbers.amount}
+            onClick={() => changePage(index + 1)}
+            className="rounded-lg border font-semibold disabled:border-aka disabled:text-aka dark:border-kami dark:font-normal dark:text-kami"
+          >
+            <a className="px-2">
+              <span>Next</span>
+              <span className="w-7 whitespace-nowrap font-fira">{" ->"}</span>
+            </a>
+          </button>
+          <button
+            type="button"
+            disabled={index >= postNumbers.maxIndex}
+            onClick={() => changePage(postNumbers.maxIndex)}
+            className="rounded-lg border font-semibold disabled:border-aka disabled:text-aka dark:border-kami dark:font-normal dark:text-kami"
+          >
+            <a className="px-2">
+              <span>Last</span>
+              <span className="w-7 whitespace-nowrap font-fira">{" ->>"}</span>
+            </a>
+          </button>
+        </div>
+      </div>
     </div>
   );
 };
