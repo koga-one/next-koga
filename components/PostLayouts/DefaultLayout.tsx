@@ -10,7 +10,12 @@ import {
   Categories,
   TUrl,
 } from "../";
-import { PostArticle, PostHeader, PostImage } from "../PostDetails";
+import {
+  PostArticle,
+  PostHeader,
+  PostImage,
+  PostNeighbors,
+} from "../PostDetails";
 
 type Props = {
   post: {
@@ -31,6 +36,9 @@ const DefaultLayout = ({ post }: Props) => {
       <div className="container mx-auto">
         <div className="mx-2 grid min-h-screen grid-cols-1 gap-2 lg:grid-cols-12 lg:gap-8">
           <div className="col-span-1 lg:col-span-8">
+            <div className="mb-2">
+              <PostNeighbors createdAt={post.createdAt} />
+            </div>
             <div className="rounded-xl shadow-lg dark:bg-kami dark:bg-opacity-5">
               <div className="overflow-hidden">
                 <PostImage featuredUrl={post.featuredImage.url} />
@@ -44,6 +52,9 @@ const DefaultLayout = ({ post }: Props) => {
                 />
                 <PostArticle raw={post.content.raw} title={post.title} />
               </div>
+            </div>
+            <div className="mt-2">
+              <PostNeighbors createdAt={post.createdAt} />
             </div>
             <Author author={post.author} />
             <CommentsForm slug={post.slug} />
